@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Word Explorer</title>
+    <link rel="stylesheet" href="word-explorer.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Word Explorer</h1>
+        <nav>
+          <a href="index.html" class="nav-link">Play Game</a>
+          <a href="word-explorer.html" class="nav-link active">Word Explorer</a>
+        </nav>
+        <div class="search-bar">
+          <input type="text" id="searchInput" placeholder="Search words..." />
+        </div>
+      </header>
+
+      <div class="filters">
+        <div class="filter-section">
+          <h3>Categories</h3>
+          <div id="categoryFilters" class="filter-options"></div>
+        </div>
+        <div class="filter-section">
+          <h3>Parts of Speech</h3>
+          <div id="posFilters" class="filter-options"></div>
+        </div>
+      </div>
+
+      <main>
+        <div id="wordList" class="word-grid"></div>
+      </main>
+
+      <div id="wordDetail" class="word-detail hidden">
+        <div class="detail-header">
+          <h2 id="detailWord"></h2>
+          <button id="closeDetail">×</button>
+        </div>
+        <div class="detail-content">
+          <div class="detail-section">
+            <h3>Categories</h3>
+            <div id="detailCategories"></div>
+          </div>
+          <div class="detail-section">
+            <h3>Parts of Speech</h3>
+            <div id="detailPos"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="word-explorer.js" type="module"></script>
+  </body>
+</html>

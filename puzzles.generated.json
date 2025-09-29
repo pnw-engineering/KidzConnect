@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "title": "Puzzle 1",
+    "choices": [
+      "Student",
+      "Chef",
+      "Cheese",
+      "Blue",
+      "Eraser",
+      "Pencil",
+      "Firefighter",
+      "Kiwi",
+      "Desk",
+      "Red",
+      "Farmer",
+      "Yellow",
+      "Orange",
+      "White",
+      "Banana",
+      "Nurse"
+    ],
+    "groups": [
+      [
+        "Farmer",
+        "Firefighter",
+        "Chef",
+        "Nurse"
+      ],
+      [
+        "Eraser",
+        "Student",
+        "Desk",
+        "Pencil"
+      ],
+      [
+        "Blue",
+        "Yellow",
+        "White",
+        "Red"
+      ],
+      [
+        "Kiwi",
+        "Orange",
+        "Cheese",
+        "Banana"
+      ]
+    ]
+  }
+]

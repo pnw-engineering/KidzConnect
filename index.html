@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Kids Connect">
+    <title>Kids Connections</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <div class="game-header">
+        <h1>Kids Connections</h1>
+        <div class="game-controls">
+          <div class="difficulty-select">
+            <label for="difficulty">Difficulty:</label>
+            <select id="difficulty">
+              <option value="easy">Easy</option>
+              <option value="medium" selected>Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+          <div id="game-timer" class="timer">0:00</div>
+        </div>
+        <div id="player-stats" class="stats-panel"></div>
+      </div>
+
+      <p class="instructions">
+        Select 4 words that belong together. You can use the keyboard (Tab +
+        Enter/Space).
+      </p>
+
+      <div class="puzzle-area">
+        <div class="puzzle-column">
+          <div class="puzzle-select-wrap" style="display: none">
+            <label for="puzzle-select">Choose a puzzle:</label>
+            <select id="puzzle-select" aria-label="Choose puzzle"></select>
+          </div>
+
+          <div id="word-grid" role="list" aria-label="Word choices"></div>
+        </div>
+
+        <aside class="hints-column" aria-label="Hints column">
+          <div class="hints-header">
+            <h2>Hints</h2>
+            <label class="hints-visibility">
+              <input type="checkbox" id="show-hints" /> Show
+            </label>
+          </div>
+          <div id="hints-list" class="hints-list">
+            <!-- groups/categories will be populated here -->
+          </div>
+        </aside>
+      </div>
+
+      <div class="controls">
+        <button id="check-btn">Check Answer</button>
+        <button id="reset-btn">Reset</button>
+        <button id="reveal-btn">Reveal Answer</button>
+        <button id="next-btn">Next Puzzle</button>
+        <button id="shuffle-btn">Shuffle Puzzle</button>
+        <button
+          id="sound-btn"
+          aria-pressed="false"
+          title="Toggle sound effects"
+        >
+          🔔
+        </button>
+        <button
+          id="speech-btn"
+          aria-pressed="false"
+          title="Toggle text to speech"
+        >
+          �️
+        </button>
+        <button id="theme-btn" aria-pressed="false" title="Toggle theme">
+          🌙
+        </button>
+      </div>
+
+      <div id="result" role="status" aria-live="polite"></div>
+    </main>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

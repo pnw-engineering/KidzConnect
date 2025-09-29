@@ -1,0 +1,597 @@
+:root {
+  /* Light theme */
+  --bg: #f0f8ff;
+  --card: #ffffff;
+  --accent: #69c0ff;
+  --accent-2: #ffd666;
+  --text: #1b263b;
+  --tile-h: 72px;
+  --header-h: 80px;
+  --hints-btm-pad: 18px;
+  --hints-bg: linear-gradient(180deg, #fffaf0, #fff6e6);
+  --solved-bg: linear-gradient(180deg, #d4f5d4, #bff2bf);
+  --solved-text: #053;
+  --hint-border: rgba(27, 38, 59, 0.06);
+  --shadow: rgba(27, 38, 59, 0.06);
+  --button-bg: #fff;
+  --button-border: rgba(27, 38, 59, 0.08);
+  --border-color: rgba(27, 38, 59, 0.12);
+  --icon-color: #666;
+}
+
+/* Dark theme - both for system preference and manual toggle */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light-theme) {
+    --bg: #0f0f1a;
+    --card: #1a1a2e;
+    --accent: #5ca1ea;
+    --accent-2: #ffd666;
+    --text: #ffffff;
+    --hints-bg: linear-gradient(180deg, #1a1a2e, #151525);
+    --solved-bg: linear-gradient(180deg, #2d4a2d, #1e3b1e);
+    --solved-text: #a0ff90;
+    --hint-border: rgba(255, 255, 255, 0.15);
+    --shadow: rgba(0, 0, 0, 0.3);
+    --button-bg: #2a2a3e;
+    --button-border: rgba(255, 255, 255, 0.2);
+    --border-color: rgba(255, 255, 255, 0.2);
+    --icon-color: #cccccc;
+  }
+}
+
+/* Manual dark theme toggle */
+:root.dark-theme {
+  --bg: #0f0f1a;
+  --card: #1a1a2e;
+  --accent: #5ca1ea;
+  --accent-2: #ffd666;
+  --text: #ffffff;
+  --hints-bg: linear-gradient(180deg, #1a1a2e, #151525);
+  --solved-bg: linear-gradient(180deg, #2d4a2d, #1e3b1e);
+  --solved-text: #a0ff90;
+  --hint-border: rgba(255, 255, 255, 0.15);
+  --shadow: rgba(0, 0, 0, 0.3);
+  --button-bg: #2a2a3e;
+  --button-border: rgba(255, 255, 255, 0.2);
+  --border-color: rgba(255, 255, 255, 0.2);
+  --icon-color: #cccccc;
+}
+
+/* Dark theme background for both manual toggle and system preference */
+:root.dark-theme body {
+  background: radial-gradient(circle at 10% 10%, #252538, var(--bg));
+}
+
+@media (prefers-color-scheme: dark) {
+  body:not(.light-theme) {
+    background: radial-gradient(circle at 10% 10%, #252538, var(--bg));
+  }
+}
+
+:root {
+  /* Responsive variables */
+  --container-padding: 20px;
+  --grid-gap: 18px;
+  --font-size-base: 18px;
+  --font-size-small: 16px;
+  --word-padding: 14px 10px;
+}
+
+/* Adjust variables for different screen sizes */
+@media (max-width: 768px) {
+  :root {
+    --tile-h: 64px;
+    --header-h: 70px;
+    --container-padding: 16px;
+    --grid-gap: 14px;
+    --font-size-base: 16px;
+    --font-size-small: 14px;
+    --word-padding: 12px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --tile-h: 56px;
+    --header-h: 60px;
+    --container-padding: 12px;
+    --grid-gap: 10px;
+    --font-size-base: 14px;
+    --font-size-small: 13px;
+    --word-padding: 10px 6px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 10% 10%, #e6f7ff, var(--bg));
+  color: var(--text);
+}
+
+.game-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.game-controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 15px 0;
+}
+
+.difficulty-select {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.difficulty-select select {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  background: var(--card);
+  color: var(--text);
+  font-size: var(--font-size-small);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.difficulty-select select:hover {
+  border-color: var(--accent);
+  box-shadow: 0 2px 6px rgba(105, 192, 255, 0.15);
+}
+
+.difficulty-select select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(105, 192, 255, 0.2);
+}
+
+.timer {
+  font-family: monospace;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: var(--text);
+  padding: 5px 10px;
+  background: var(--card);
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease-in-out;
+}
+
+@keyframes timer-pulse {
+  0% {
+    border-color: var(--border-color);
+    box-shadow: none;
+  }
+  50% {
+    border-color: var(--accent);
+    box-shadow: 0 0 8px rgba(105, 192, 255, 0.3);
+  }
+  100% {
+    border-color: var(--border-color);
+    box-shadow: none;
+  }
+}
+
+.timer.running {
+  animation: timer-pulse 2s ease-in-out infinite;
+}
+
+.stats-panel {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+.stat {
+  background: var(--card);
+  padding: 8px 15px;
+  border-radius: 15px;
+  font-size: var(--font-size-small);
+  color: var(--text);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s ease-in-out;
+  cursor: default;
+}
+
+.stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(105, 192, 255, 0.1);
+  border-color: var(--accent);
+}
+
+.stat i {
+  color: var(--icon-color);
+  font-size: 1.1em;
+}
+
+.container {
+  width: 100%;
+  max-width: 720px;
+  padding: var(--container-padding);
+}
+
+.puzzle-area {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  grid-template-rows: var(--header-h) repeat(4, var(--tile-h));
+  gap: var(--grid-gap);
+  align-items: start;
+}
+
+/* Stack layout on smaller screens */
+@media (max-width: 640px) {
+  .puzzle-area {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .puzzle-column {
+    grid-row: auto;
+    order: 2; /* Move puzzle below hints on mobile */
+  }
+
+  .hints-column {
+    grid-row: auto;
+    order: 1; /* Move hints above puzzle on mobile */
+    margin-bottom: var(--grid-gap);
+  }
+}
+
+.puzzle-column {
+  grid-row: 2 / span 4;
+}
+
+.hints-column {
+  background: var(--hints-bg);
+  border: 2px solid var(--hint-border);
+  border-radius: 10px;
+  padding: 12px;
+  box-shadow: 0 6px 18px var(--shadow);
+  /* span the header row plus the 4 tile rows */
+  grid-row: 1 / span 5;
+  display: grid;
+  grid-template-rows: var(--header-h) repeat(4, var(--tile-h));
+  padding-bottom: var(--hints-btm-pad);
+}
+
+/* collapsed state when hints list is hidden: show only header area */
+.hints-column.collapsed {
+  grid-template-rows: var(--header-h);
+  padding-bottom: 8px; /* minimal padding when collapsed */
+}
+
+.hints-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.hints-header h2 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.hints-list {
+  grid-row: 2 / span 4;
+  display: grid;
+  grid-template-rows: repeat(4, var(--tile-h));
+  gap: 12px;
+  align-items: center;
+  /* remove scrolling so hint boxes always line up with rows */
+  max-height: none;
+  overflow: visible;
+}
+
+.hint-group {
+  background: var(--card);
+  border: 1px dashed var(--border-color);
+  padding: 8px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text);
+}
+
+.hint-group:hover {
+  background: var(--bg);
+  border-color: var(--accent);
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.hint-group.hint-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(105, 192, 255, 0.2);
+}
+
+/* Animation for highlighted words */
+@keyframes hint-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.word.hint-highlighted {
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  color: #102;
+  animation: hint-pulse 1s ease infinite;
+  border-color: var(--accent);
+}
+
+.hints-header {
+  position: sticky;
+  top: 0;
+  background: transparent;
+  padding-bottom: 6px;
+  z-index: 2;
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: calc(var(--font-size-base) * 1.5);
+  text-align: center;
+}
+
+.instructions {
+  margin: 0 0 16px;
+  color: var(--text);
+  opacity: 0.9;
+  font-size: var(--font-size-small);
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#word-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4x4 layout */
+  grid-auto-rows: var(--tile-h);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+/* On narrow screens, switch to 2 columns for readability */
+@media (max-width: 420px) {
+  #word-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.word {
+  background: linear-gradient(180deg, var(--card), #f8fcff);
+  border: 3px solid transparent;
+  border-radius: 10px;
+  padding: var(--word-padding);
+  height: var(--tile-h);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 12px rgba(27, 38, 59, 0.06);
+  cursor: pointer;
+  font-weight: 600;
+  text-align: center;
+  transition: transform 0.12s ease, box-shadow 0.12s ease,
+    background-color 0.12s, opacity 0.12s ease-in-out;
+  will-change: transform;
+  line-height: 1.2;
+  position: relative;
+}
+
+/* Container for text that will be auto-scaled */
+.word .text-fit {
+  display: inline-block;
+  padding: 4px;
+  font-size: var(--font-size-base);
+  max-width: 100%;
+  max-height: 100%;
+  white-space: normal;
+  word-break: break-word;
+  /* Add ellipsis if text still overflows after minimum font size */
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.word:active {
+  transform: translateY(1px);
+}
+.word:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(105, 192, 255, 0.18);
+}
+
+.word.selected {
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  color: #102;
+  transform: translateY(-4px);
+}
+
+.word.solved {
+  background: linear-gradient(180deg, #d4f5d4, #bff2bf);
+  color: #053;
+  opacity: 0.95;
+  transform: translateY(0) scale(1);
+  box-shadow: none;
+  cursor: default;
+}
+
+/* subtle pop when tile becomes solved */
+.word.solved.pop {
+  animation: pop 260ms ease forwards;
+}
+
+@keyframes pop {
+  0% {
+    transform: translateY(0) scale(0.92);
+  }
+  60% {
+    transform: translateY(-6px) scale(1.06);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+}
+
+.controls button {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 2px solid rgba(27, 38, 59, 0.08);
+  background: #fff;
+  cursor: pointer;
+  font-size: var(--font-size-small);
+  min-width: 80px; /* Ensure buttons are tappable on mobile */
+  min-height: 44px; /* Better touch target size */
+}
+
+.controls button:hover {
+  transform: translateY(-2px);
+}
+
+@media (hover: none) {
+  .controls button:hover {
+    transform: none; /* Disable hover effect on touch devices */
+  }
+}
+
+/* Theme button styles */
+#theme-btn {
+  position: relative;
+  padding: 8px 14px;
+}
+
+#theme-btn::after {
+  content: "auto";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  background: var(--accent);
+  color: white;
+  padding: 2px 4px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+#theme-btn.theme-auto::after {
+  opacity: 1;
+}
+
+#result {
+  min-height: 24px;
+  font-weight: 700;
+}
+
+.puzzle-select-wrap {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+.puzzle-select-wrap select {
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(27, 38, 59, 0.12);
+  background: #fff;
+}
+
+@media (max-width: 420px) {
+  .word {
+    font-size: 16px;
+    padding: 12px;
+  }
+}
+
+/* iPad and mobile optimizations */
+@supports (-webkit-touch-callout: none) {
+  /* iOS-specific optimizations */
+  body {
+    -webkit-touch-callout: none; /* Prevent callout menu on long press */
+    -webkit-user-select: none;   /* Prevent text selection */
+    user-select: none;           /* Standard property for user selection */
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight */
+    touch-action: manipulation;  /* Optimize touch behavior */
+  }
+
+  .word {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+  }
+
+  .word:active {
+    transform: scale(0.95); /* Better touch feedback */
+  }
+
+  .controls button {
+    padding: 12px 16px; /* Larger touch targets */
+    min-height: 48px;
+    margin: 4px;        /* More space between buttons */
+  }
+
+  /* Prevent rubber-band scrolling */
+  .container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Ensure buttons are easily tappable */
+  .hint-group {
+    min-height: 44px;
+    padding: 12px;
+  }
+
+  /* Add momentum scrolling */
+  .hints-list {
+    -webkit-overflow-scrolling: touch;
+  }
+}
