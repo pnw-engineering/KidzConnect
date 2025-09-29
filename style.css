@@ -550,10 +550,10 @@ h1 {
   /* iOS-specific optimizations */
   body {
     -webkit-touch-callout: none; /* Prevent callout menu on long press */
-    -webkit-user-select: none;   /* Prevent text selection */
-    user-select: none;           /* Standard property for user selection */
+    -webkit-user-select: none; /* Prevent text selection */
+    user-select: none; /* Standard property for user selection */
     -webkit-tap-highlight-color: transparent; /* Remove tap highlight */
-    touch-action: manipulation;  /* Optimize touch behavior */
+    touch-action: manipulation; /* Optimize touch behavior */
   }
 
   .word {
@@ -570,7 +570,7 @@ h1 {
   .controls button {
     padding: 12px 16px; /* Larger touch targets */
     min-height: 48px;
-    margin: 4px;        /* More space between buttons */
+    margin: 4px; /* More space between buttons */
   }
 
   /* Prevent rubber-band scrolling */

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="256" fill="#69c0ff"/>
+  
+  <!-- Connected tiles group -->
+  <g transform="translate(256 256) rotate(-15) translate(-256 -256)">
+    <!-- Top tile -->
+    <rect x="156" y="116" width="200" height="80" rx="16" 
+          fill="#fff" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.1))"/>
+    <text x="256" y="170" font-family="Arial Black" font-size="48" 
+          text-anchor="middle" fill="#1b263b">KIDZ</text>
+    
+    <!-- Bottom tile -->
+    <rect x="156" y="316" width="200" height="80" rx="16" 
+          fill="#fff" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.1))"/>
+    <text x="256" y="370" font-family="Arial Black" font-size="40" 
+          text-anchor="middle" fill="#1b263b">CONNECT</text>
+    
+    <!-- Middle connecting tile -->
+    <rect x="206" y="216" width="100" height="80" rx="16" 
+          fill="#ffd666" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.1))"/>
+    <text x="256" y="270" font-family="Arial Black" font-size="48" 
+          text-anchor="middle" fill="#1b263b">+</text>
+    
+    <!-- Connection lines -->
+    <path d="M256 196 L256 216" stroke="#ffd666" stroke-width="8"/>
+    <path d="M256 296 L256 316" stroke="#ffd666" stroke-width="8"/>
+  </g>
+</svg>

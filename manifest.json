@@ -1,11 +1,12 @@
 {
-  "name": "Kids Connections",
-  "short_name": "Kids Connect",
-  "description": "A word connection game for kids",
-  "start_url": ".",
+  "name": "KidzConnect",
+  "short_name": "KidzConnect",
+  "description": "A fun word connection game for kids to explore word relationships and categories",
+  "start_url": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "orientation": "portrait",
+  "background_color": "#69c0ff",
+  "theme_color": "#69c0ff",
   "icons": [
     {
       "src": "icon-192.png",

@@ -23,7 +23,9 @@ A kid-friendly word connection game that helps children learn word relationships
 No installation needed! Just visit [https://pnw-engineering.github.io/KidzConnect](https://pnw-engineering.github.io/KidzConnect)
 
 ### iPad Users
+
 To install as an app on your iPad:
+
 1. Open Safari and go to the game URL
 2. Tap the Share button (box with up arrow)
 3. Select "Add to Home Screen"
