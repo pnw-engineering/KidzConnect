@@ -106,15 +106,28 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
   margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
   min-height: 100vh;
+  min-height: -webkit-fill-available; /* Fix for iOS */
   display: flex;
   align-items: center;
   justify-content: center;
   background: radial-gradient(circle at 10% 10%, #e6f7ff, var(--bg));
   color: var(--text);
+  position: fixed; /* Prevent bounce on iOS */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .game-header {
@@ -225,6 +238,14 @@ body {
   width: 100%;
   max-width: 720px;
   padding: var(--container-padding);
+  height: 100%;
+  max-height: 100vh;
+  max-height: -webkit-fill-available; /* Fix for iOS */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .puzzle-area {
@@ -236,6 +257,27 @@ body {
 }
 
 /* Stack layout on smaller screens */
+/* Tablet-specific layout */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .container {
+    max-width: 90%;
+    height: auto;
+    min-height: 90vh;
+    margin: auto;
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .puzzle-area {
+    grid-template-columns: 1fr 240px;
+    gap: 24px;
+  }
+}
+
+/* Mobile and small tablet layout */
 @media (max-width: 640px) {
   .puzzle-area {
     grid-template-columns: 1fr;
@@ -251,6 +293,12 @@ body {
     grid-row: auto;
     order: 1; /* Move hints above puzzle on mobile */
     margin-bottom: var(--grid-gap);
+  }
+
+  .container {
+    height: 100%;
+    max-height: -webkit-fill-available;
+    padding: 16px;
   }
 }
 
