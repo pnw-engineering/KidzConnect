@@ -1,2967 +1,1462 @@
 [
   {
     "word": "actor",
-    "categories": [
-      "occupations",
-      "arts"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["occupations", "arts"],
+    "pos": ["noun"]
   },
   {
     "word": "addition",
-    "categories": [
-      "math",
-      "arithmetic",
-      "operations"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["math", "arithmetic", "operations"],
+    "pos": ["noun"]
   },
   {
     "word": "adjective",
-    "categories": [
-      "language",
-      "grammar",
-      "parts-of-speech"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["language", "grammar", "parts-of-speech"],
+    "pos": ["noun"]
   },
   {
     "word": "airplane",
-    "categories": [
-      "transportation",
-      "vehicles",
-      "air-transport"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["transportation", "vehicles", "air-transport"],
+    "pos": ["noun"]
   },
   {
     "word": "airport",
-    "categories": [
-      "places",
-      "transport"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["places", "transport"],
+    "pos": ["noun"]
   },
   {
     "word": "alphabet",
-    "categories": [
-      "language",
-      "literacy",
-      "basics"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["language", "literacy", "basics"],
+    "pos": ["noun"]
   },
   {
     "word": "always",
-    "categories": [
-      "adverbs"
-    ],
-    "pos": [
-      "adverb"
-    ]
+    "categories": ["adverbs"],
+    "pos": ["adverb"]
   },
   {
     "word": "angry",
-    "categories": [
-      "emotions"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["emotions"],
+    "pos": ["adjective"]
   },
   {
     "word": "apple",
-    "categories": [
-      "food",
-      "fruit"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["food", "fruit"],
+    "pos": ["noun"]
   },
   {
     "word": "artist",
-    "categories": [
-      "occupations"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["occupations"],
+    "pos": ["noun"]
   },
   {
     "word": "asteroid",
-    "categories": [
-      "space",
-      "celestial-bodies",
-      "solar-system"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["space", "celestial-bodies", "solar-system"],
+    "pos": ["noun"]
   },
   {
     "word": "baker",
-    "categories": [
-      "occupations",
-      "food"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["occupations", "food"],
+    "pos": ["noun"]
   },
   {
     "word": "ball",
-    "categories": [
-      "toys"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["toys"],
+    "pos": ["noun"]
   },
   {
     "word": "banana",
-    "categories": [
-      "food",
-      "fruit"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["food", "fruit"],
+    "pos": ["noun"]
   },
   {
     "word": "basketball",
-    "categories": [
-      "sports",
-      "team-sports",
-      "ball-games"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["sports", "team-sports", "ball-games"],
+    "pos": ["noun"]
   },
   {
     "word": "beach",
-    "categories": [
-      "geology",
-      "coastal",
-      "landforms"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["geology", "coastal", "landforms"],
+    "pos": ["noun"]
   },
   {
     "word": "bear",
-    "categories": [
-      "animals"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals"],
+    "pos": ["noun"]
   },
   {
     "word": "bed",
-    "categories": [
-      "home"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["home"],
+    "pos": ["noun"]
   },
   {
     "word": "bee",
-    "categories": [
-      "animals",
-      "insects",
-      "pollinators"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals", "insects", "pollinators"],
+    "pos": ["noun"]
   },
   {
     "word": "bicycle",
-    "categories": [
-      "transportation",
-      "vehicles",
-      "human-powered"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["transportation", "vehicles", "human-powered"],
+    "pos": ["noun"]
   },
   {
     "word": "big",
-    "categories": [
-      "sizes",
-      "relative-size",
-      "large"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["sizes", "relative-size", "large"],
+    "pos": ["adjective"]
   },
   {
     "word": "bike",
-    "categories": [
-      "transport"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["transport"],
+    "pos": ["noun"]
   },
   {
     "word": "black",
-    "categories": [
-      "colors"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["colors"],
+    "pos": ["adjective"]
   },
   {
     "word": "blocks",
-    "categories": [
-      "toys"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["toys"],
+    "pos": ["noun"]
   },
   {
     "word": "blue",
-    "categories": [
-      "colors",
-      "primary-colors",
-      "cool-colors"
-    ],
-    "pos": [
-      "adjective",
-      "noun"
-    ]
+    "categories": ["colors", "primary-colors", "cool-colors"],
+    "pos": ["adjective", "noun"]
   },
   {
     "word": "board",
-    "categories": [
-      "school"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["school"],
+    "pos": ["noun"]
   },
   {
     "word": "boat",
-    "categories": [
-      "transport"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["transport"],
+    "pos": ["noun"]
   },
   {
     "word": "book",
-    "categories": [
-      "toys",
-      "school"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["toys", "school"],
+    "pos": ["noun"]
   },
   {
     "word": "brave",
-    "categories": [
-      "emotions"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["emotions"],
+    "pos": ["adjective"]
   },
   {
     "word": "bread",
-    "categories": [
-      "food"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["food"],
+    "pos": ["noun"]
   },
   {
     "word": "bright",
-    "categories": [
-      "adjective",
-      "nature"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["adjective", "nature"],
+    "pos": ["adjective"]
   },
   {
     "word": "brilliant",
-    "categories": [
-      "qualities"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["qualities"],
+    "pos": ["adjective"]
   },
   {
     "word": "burger",
-    "categories": [
-      "food"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["food"],
+    "pos": ["noun"]
   },
   {
     "word": "bus",
-    "categories": [
-      "transport"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["transport"],
+    "pos": ["noun"]
   },
   {
     "word": "butterfly",
-    "categories": [
-      "animals",
-      "insects",
-      "flying"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals", "insects", "flying"],
+    "pos": ["noun"]
   },
   {
     "word": "cactus",
-    "categories": [
-      "plants",
-      "desert-plants",
-      "succulents"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["plants", "desert-plants", "succulents"],
+    "pos": ["noun"]
   },
   {
     "word": "calm",
-    "categories": [
-      "emotions"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["emotions"],
+    "pos": ["adjective"]
   },
   {
     "word": "car",
-    "categories": [
-      "transportation",
-      "vehicles",
-      "road-transport"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["transportation", "vehicles", "road-transport"],
+    "pos": ["noun"]
   },
   {
     "word": "cave",
-    "categories": [
-      "geology",
-      "landforms",
-      "underground"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["geology", "landforms", "underground"],
+    "pos": ["noun"]
   },
   {
     "word": "cell",
-    "categories": [
-      "science",
-      "biology",
-      "life-science"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["science", "biology", "life-science"],
+    "pos": ["noun"]
   },
   {
     "word": "cheese",
-    "categories": [
-      "food"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["food"],
+    "pos": ["noun"]
   },
   {
     "word": "chef",
-    "categories": [
-      "professions",
-      "food-service",
-      "culinary"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["professions", "food-service", "culinary"],
+    "pos": ["noun"]
   },
   {
     "word": "chemical",
-    "categories": [
-      "science",
-      "chemistry",
-      "materials"
-    ],
-    "pos": [
-      "noun",
-      "adjective"
-    ]
+    "categories": ["science", "chemistry", "materials"],
+    "pos": ["noun", "adjective"]
   },
   {
     "word": "circle",
-    "categories": [
-      "math",
-      "shapes",
-      "geometry"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["math", "shapes", "geometry"],
+    "pos": ["noun"]
   },
   {
     "word": "city",
-    "categories": [
-      "places"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["places"],
+    "pos": ["noun"]
   },
   {
     "word": "class",
-    "categories": [
-      "school"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["school"],
+    "pos": ["noun"]
   },
   {
     "word": "cloud",
-    "categories": [
-      "weather",
-      "atmosphere",
-      "sky-features"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["weather", "atmosphere", "sky-features"],
+    "pos": ["noun"]
   },
   {
     "word": "coat",
-    "categories": [
-      "clothing"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["clothing"],
+    "pos": ["noun"]
   },
   {
     "word": "cold",
-    "categories": [
-      "temperature",
-      "thermal-state",
-      "low-temp"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["temperature", "thermal-state", "low-temp"],
+    "pos": ["adjective"]
   },
   {
     "word": "comet",
-    "categories": [
-      "space",
-      "celestial-bodies",
-      "solar-system"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["space", "celestial-bodies", "solar-system"],
+    "pos": ["noun"]
   },
   {
     "word": "compass",
-    "categories": [
-      "geography",
-      "tools",
-      "navigation"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["geography", "tools", "navigation"],
+    "pos": ["noun"]
   },
   {
     "word": "computer",
-    "categories": [
-      "technology",
-      "electronics",
-      "computing-devices"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["technology", "electronics", "computing-devices"],
+    "pos": ["noun"]
   },
   {
     "word": "continent",
-    "categories": [
-      "geography",
-      "earth-features",
-      "landforms"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["geography", "earth-features", "landforms"],
+    "pos": ["noun"]
   },
   {
     "word": "cookie",
-    "categories": [
-      "food"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["food"],
+    "pos": ["noun"]
   },
   {
     "word": "cool",
-    "categories": [
-      "temperature",
-      "thermal-state",
-      "moderate-low"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["temperature", "thermal-state", "moderate-low"],
+    "pos": ["adjective"]
   },
   {
     "word": "cotton",
-    "categories": [
-      "materials",
-      "natural",
-      "fabric"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["materials", "natural", "fabric"],
+    "pos": ["noun"]
   },
   {
     "word": "country",
-    "categories": [
-      "geography",
-      "places",
-      "political-regions"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["geography", "places", "political-regions"],
+    "pos": ["noun"]
   },
   {
     "word": "cow",
-    "categories": [
-      "animals"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals"],
+    "pos": ["noun"]
   },
   {
     "word": "crayon",
-    "categories": [
-      "school"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["school"],
+    "pos": ["noun"]
   },
   {
     "word": "cup",
-    "categories": [
-      "home"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["home"],
+    "pos": ["noun"]
   },
   {
     "word": "curious",
-    "categories": [
-      "emotions"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["emotions"],
+    "pos": ["adjective"]
   },
   {
     "word": "curved",
-    "categories": [
-      "shapes",
-      "lines",
-      "non-linear"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["shapes", "lines", "non-linear"],
+    "pos": ["adjective"]
   },
   {
     "word": "dance",
-    "categories": [
-      "art",
-      "performing-arts",
-      "movement"
-    ],
-    "pos": [
-      "noun",
-      "verb"
-    ]
+    "categories": ["art", "performing-arts", "movement"],
+    "pos": ["noun", "verb"]
   },
   {
     "word": "dancer",
-    "categories": [
-      "occupations",
-      "arts"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["occupations", "arts"],
+    "pos": ["noun"]
   },
   {
     "word": "dark",
-    "categories": [
-      "adjective"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["adjective"],
+    "pos": ["adjective"]
   },
   {
     "word": "desert",
-    "categories": [
-      "places",
-      "nature"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["places", "nature"],
+    "pos": ["noun"]
   },
   {
     "word": "desk",
-    "categories": [
-      "school"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["school"],
+    "pos": ["noun"]
   },
   {
     "word": "divide",
-    "categories": [
-      "math",
-      "arithmetic",
-      "operations"
-    ],
-    "pos": [
-      "verb"
-    ]
+    "categories": ["math", "arithmetic", "operations"],
+    "pos": ["verb"]
   },
   {
     "word": "doctor",
-    "categories": [
-      "professions",
-      "healthcare",
-      "medical"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["professions", "healthcare", "medical"],
+    "pos": ["noun"]
   },
   {
     "word": "doll",
-    "categories": [
-      "toys"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["toys"],
+    "pos": ["noun"]
   },
   {
     "word": "draw",
-    "categories": [
-      "actions",
-      "arts"
-    ],
-    "pos": [
-      "verb"
-    ]
+    "categories": ["actions", "arts"],
+    "pos": ["verb"]
   },
   {
     "word": "driver",
-    "categories": [
-      "occupations",
-      "transport"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["occupations", "transport"],
+    "pos": ["noun"]
   },
   {
     "word": "drum",
-    "categories": [
-      "music",
-      "instruments",
-      "percussion"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["music", "instruments", "percussion"],
+    "pos": ["noun"]
   },
   {
     "word": "duck",
-    "categories": [
-      "animals"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals"],
+    "pos": ["noun"]
   },
   {
     "word": "eagle",
-    "categories": [
-      "animals",
-      "birds",
-      "predators"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals", "birds", "predators"],
+    "pos": ["noun"]
   },
   {
     "word": "ear",
-    "categories": [
-      "body"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["body"],
+    "pos": ["noun"]
   },
   {
     "word": "eat",
-    "categories": [
-      "actions",
-      "food"
-    ],
-    "pos": [
-      "verb"
-    ]
+    "categories": ["actions", "food"],
+    "pos": ["verb"]
   },
   {
     "word": "ecosystem",
-    "categories": [
-      "science",
-      "biology",
-      "ecology"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["science", "biology", "ecology"],
+    "pos": ["noun"]
   },
   {
     "word": "elephant",
-    "categories": [
-      "animals",
-      "mammals",
-      "herbivores"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals", "mammals", "herbivores"],
+    "pos": ["noun"]
   },
   {
     "word": "energy",
-    "categories": [
-      "science",
-      "physics",
-      "concepts"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["science", "physics", "concepts"],
+    "pos": ["noun"]
   },
   {
     "word": "engineer",
-    "categories": [
-      "professions",
-      "technical",
-      "design"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["professions", "technical", "design"],
+    "pos": ["noun"]
   },
   {
     "word": "eraser",
-    "categories": [
-      "school"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["school"],
+    "pos": ["noun"]
   },
   {
     "word": "excited",
-    "categories": [
-      "emotions"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["emotions"],
+    "pos": ["adjective"]
   },
   {
     "word": "experiment",
-    "categories": [
-      "science",
-      "scientific-method",
-      "actions"
-    ],
-    "pos": [
-      "noun",
-      "verb"
-    ]
+    "categories": ["science", "scientific-method", "actions"],
+    "pos": ["noun", "verb"]
   },
   {
     "word": "eye",
-    "categories": [
-      "body"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["body"],
+    "pos": ["noun"]
   },
   {
     "word": "factory",
-    "categories": [
-      "buildings",
-      "industrial",
-      "manufacturing"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["buildings", "industrial", "manufacturing"],
+    "pos": ["noun"]
   },
   {
     "word": "family",
-    "categories": [
-      "relationships"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["relationships"],
+    "pos": ["noun"]
   },
   {
     "word": "farmer",
-    "categories": [
-      "professions",
-      "agriculture",
-      "food-production"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["professions", "agriculture", "food-production"],
+    "pos": ["noun"]
   },
   {
     "word": "fast",
-    "categories": [
-      "adverbs"
-    ],
-    "pos": [
-      "adverb"
-    ]
+    "categories": ["adverbs"],
+    "pos": ["adverb"]
   },
   {
     "word": "firefighter",
-    "categories": [
-      "occupations"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["occupations"],
+    "pos": ["noun"]
   },
   {
     "word": "fish",
-    "categories": [
-      "animals"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals"],
+    "pos": ["noun"]
   },
   {
     "word": "flat",
-    "categories": [
-      "shapes",
-      "surfaces",
-      "planar"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["shapes", "surfaces", "planar"],
+    "pos": ["adjective"]
   },
   {
     "word": "flower",
-    "categories": [
-      "plants",
-      "vegetation",
-      "flowering-plants"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["plants", "vegetation", "flowering-plants"],
+    "pos": ["noun"]
   },
   {
     "word": "flute",
-    "categories": [
-      "music",
-      "instruments",
-      "woodwind"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["music", "instruments", "woodwind"],
+    "pos": ["noun"]
   },
   {
     "word": "foot",
-    "categories": [
-      "body"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["body"],
+    "pos": ["noun"]
   },
   {
     "word": "forest",
-    "categories": [
-      "places",
-      "nature"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["places", "nature"],
+    "pos": ["noun"]
   },
   {
     "word": "fork",
-    "categories": [
-      "home"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["home"],
+    "pos": ["noun"]
   },
   {
     "word": "freezing",
-    "categories": [
-      "temperature",
-      "thermal-state",
-      "extreme-cold"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["temperature", "thermal-state", "extreme-cold"],
+    "pos": ["adjective"]
   },
   {
     "word": "friend",
-    "categories": [
-      "relationships"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["relationships"],
+    "pos": ["noun"]
   },
   {
     "word": "friendly",
-    "categories": [
-      "qualities"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["qualities"],
+    "pos": ["adjective"]
   },
   {
     "word": "fries",
-    "categories": [
-      "food"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["food"],
+    "pos": ["noun"]
   },
   {
     "word": "frog",
-    "categories": [
-      "animals",
-      "amphibians",
-      "pond-life"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals", "amphibians", "pond-life"],
+    "pos": ["noun"]
   },
   {
     "word": "future",
-    "categories": [
-      "history",
-      "time-periods",
-      "concepts"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["history", "time-periods", "concepts"],
+    "pos": ["noun"]
   },
   {
     "word": "galaxy",
-    "categories": [
-      "space",
-      "celestial-bodies",
-      "cosmic-structures"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["space", "celestial-bodies", "cosmic-structures"],
+    "pos": ["noun"]
   },
   {
     "word": "garden",
-    "categories": [
-      "places",
-      "nature"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["places", "nature"],
+    "pos": ["noun"]
   },
   {
     "word": "gas",
-    "categories": [
-      "physical-properties",
-      "state-of-matter",
-      "fluid"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["physical-properties", "state-of-matter", "fluid"],
+    "pos": ["noun"]
   },
   {
     "word": "glass",
-    "categories": [
-      "materials",
-      "inorganic",
-      "transparent"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["materials", "inorganic", "transparent"],
+    "pos": ["noun"]
   },
   {
     "word": "globe",
-    "categories": [
-      "geography",
-      "tools",
-      "earth-models"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["geography", "tools", "earth-models"],
+    "pos": ["noun"]
   },
   {
     "word": "gloves",
-    "categories": [
-      "clothing"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["clothing"],
+    "pos": ["noun"]
   },
   {
     "word": "goose",
-    "categories": [
-      "animals"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals"],
+    "pos": ["noun"]
   },
   {
     "word": "grape",
-    "categories": [
-      "food",
-      "fruit"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["food", "fruit"],
+    "pos": ["noun"]
   },
   {
     "word": "grass",
-    "categories": [
-      "plants",
-      "vegetation",
-      "ground-cover"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["plants", "vegetation", "ground-cover"],
+    "pos": ["noun"]
   },
   {
     "word": "gravity",
-    "categories": [
-      "science",
-      "physics",
-      "forces"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["science", "physics", "forces"],
+    "pos": ["noun"]
   },
   {
     "word": "green",
-    "categories": [
-      "colors",
-      "secondary-colors",
-      "cool-colors"
-    ],
-    "pos": [
-      "adjective",
-      "noun"
-    ]
+    "categories": ["colors", "secondary-colors", "cool-colors"],
+    "pos": ["adjective", "noun"]
   },
   {
     "word": "guitar",
-    "categories": [
-      "music",
-      "instruments",
-      "strings"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["music", "instruments", "strings"],
+    "pos": ["noun"]
   },
   {
     "word": "habitat",
-    "categories": [
-      "science",
-      "biology",
-      "ecology"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["science", "biology", "ecology"],
+    "pos": ["noun"]
   },
   {
     "word": "hamster",
-    "categories": [
-      "animals"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals"],
+    "pos": ["noun"]
   },
   {
     "word": "hand",
-    "categories": [
-      "body"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["body"],
+    "pos": ["noun"]
   },
   {
     "word": "happy",
-    "categories": [
-      "emotions"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["emotions"],
+    "pos": ["adjective"]
   },
   {
     "word": "hard",
-    "categories": [
-      "texture",
-      "tactile",
-      "firm"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["texture", "tactile", "firm"],
+    "pos": ["adjective"]
   },
   {
     "word": "hat",
-    "categories": [
-      "clothing"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["clothing"],
+    "pos": ["noun"]
   },
   {
     "word": "head",
-    "categories": [
-      "body"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["body"],
+    "pos": ["noun"]
   },
   {
     "word": "heavy",
-    "categories": [
-      "physical-properties",
-      "weight",
-      "high-mass"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["physical-properties", "weight", "high-mass"],
+    "pos": ["adjective"]
   },
   {
     "word": "hopeful",
-    "categories": [
-      "emotions"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["emotions"],
+    "pos": ["adjective"]
   },
   {
     "word": "horse",
-    "categories": [
-      "animals"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals"],
+    "pos": ["noun"]
   },
   {
     "word": "hospital",
-    "categories": [
-      "buildings",
-      "healthcare",
-      "medical-facilities"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["buildings", "healthcare", "medical-facilities"],
+    "pos": ["noun"]
   },
   {
     "word": "hot",
-    "categories": [
-      "temperature",
-      "thermal-state",
-      "high-temp"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["temperature", "thermal-state", "high-temp"],
+    "pos": ["adjective"]
   },
   {
     "word": "house",
-    "categories": [
-      "buildings",
-      "residential",
-      "dwellings"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["buildings", "residential", "dwellings"],
+    "pos": ["noun"]
   },
   {
     "word": "huge",
-    "categories": [
-      "sizes",
-      "relative-size",
-      "very-large"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["sizes", "relative-size", "very-large"],
+    "pos": ["adjective"]
   },
   {
     "word": "internet",
-    "categories": [
-      "technology",
-      "networks",
-      "digital-infrastructure"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["technology", "networks", "digital-infrastructure"],
+    "pos": ["noun"]
   },
   {
     "word": "island",
-    "categories": [
-      "places",
-      "nature"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["places", "nature"],
+    "pos": ["noun"]
   },
   {
     "word": "jump",
-    "categories": [
-      "sports"
-    ],
-    "pos": [
-      "verb"
-    ]
+    "categories": ["sports"],
+    "pos": ["verb"]
   },
   {
     "word": "kind",
-    "categories": [
-      "emotions"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["emotions"],
+    "pos": ["adjective"]
   },
   {
     "word": "kite",
-    "categories": [
-      "toys"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["toys"],
+    "pos": ["noun"]
   },
   {
     "word": "kiwi",
-    "categories": [
-      "food",
-      "fruit"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["food", "fruit"],
+    "pos": ["noun"]
   },
   {
     "word": "lake",
-    "categories": [
-      "geology",
-      "water-bodies",
-      "freshwater"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["geology", "water-bodies", "freshwater"],
+    "pos": ["noun"]
   },
   {
     "word": "lamp",
-    "categories": [
-      "home"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["home"],
+    "pos": ["noun"]
   },
   {
     "word": "laugh",
-    "categories": [
-      "actions",
-      "emotions"
-    ],
-    "pos": [
-      "verb",
-      "noun"
-    ]
+    "categories": ["actions", "emotions"],
+    "pos": ["verb", "noun"]
   },
   {
     "word": "leg",
-    "categories": [
-      "body"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["body"],
+    "pos": ["noun"]
   },
   {
     "word": "library",
-    "categories": [
-      "buildings",
-      "education",
-      "book-facilities"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["buildings", "education", "book-facilities"],
+    "pos": ["noun"]
   },
   {
     "word": "light",
-    "categories": [
-      "physical-properties",
-      "weight",
-      "low-mass"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["physical-properties", "weight", "low-mass"],
+    "pos": ["adjective"]
   },
   {
     "word": "lightning",
-    "categories": [
-      "weather",
-      "severe-weather",
-      "electrical"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["weather", "severe-weather", "electrical"],
+    "pos": ["noun"]
   },
   {
     "word": "lion",
-    "categories": [
-      "animals",
-      "mammals",
-      "predators"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals", "mammals", "predators"],
+    "pos": ["noun"]
   },
   {
     "word": "liquid",
-    "categories": [
-      "physical-properties",
-      "state-of-matter",
-      "fluid"
-    ],
-    "pos": [
-      "adjective",
-      "noun"
-    ]
+    "categories": ["physical-properties", "state-of-matter", "fluid"],
+    "pos": ["adjective", "noun"]
   },
   {
     "word": "loud",
-    "categories": [
-      "qualities"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["qualities"],
+    "pos": ["adjective"]
   },
   {
     "word": "magnet",
-    "categories": [
-      "science",
-      "physics",
-      "tools"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["science", "physics", "tools"],
+    "pos": ["noun"]
   },
   {
     "word": "map",
-    "categories": [
-      "geography",
-      "tools",
-      "navigation"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["geography", "tools", "navigation"],
+    "pos": ["noun"]
   },
   {
     "word": "market",
-    "categories": [
-      "places",
-      "commerce",
-      "shopping"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["places", "commerce", "shopping"],
+    "pos": ["noun"]
   },
   {
     "word": "medium",
-    "categories": [
-      "sizes",
-      "relative-size",
-      "average"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["sizes", "relative-size", "average"],
+    "pos": ["adjective"]
   },
   {
     "word": "metal",
-    "categories": [
-      "materials",
-      "inorganic",
-      "metallic"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["materials", "inorganic", "metallic"],
+    "pos": ["noun"]
   },
   {
     "word": "microscope",
-    "categories": [
-      "science",
-      "lab-equipment",
-      "tools"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["science", "lab-equipment", "tools"],
+    "pos": ["noun"]
   },
   {
     "word": "milk",
-    "categories": [
-      "food"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["food"],
+    "pos": ["noun"]
   },
   {
     "word": "molecule",
-    "categories": [
-      "science",
-      "chemistry",
-      "physics"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["science", "chemistry", "physics"],
+    "pos": ["noun"]
   },
   {
     "word": "moon",
-    "categories": [
-      "space",
-      "celestial-bodies",
-      "satellites"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["space", "celestial-bodies", "satellites"],
+    "pos": ["noun"]
   },
   {
     "word": "mountain",
-    "categories": [
-      "geology",
-      "landforms",
-      "elevated-terrain"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["geology", "landforms", "elevated-terrain"],
+    "pos": ["noun"]
   },
   {
     "word": "mouse",
-    "categories": [
-      "animals"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals"],
+    "pos": ["noun"]
   },
   {
     "word": "mouth",
-    "categories": [
-      "body"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["body"],
+    "pos": ["noun"]
   },
   {
     "word": "multiply",
-    "categories": [
-      "math",
-      "arithmetic",
-      "operations"
-    ],
-    "pos": [
-      "verb"
-    ]
+    "categories": ["math", "arithmetic", "operations"],
+    "pos": ["verb"]
   },
   {
     "word": "museum",
-    "categories": [
-      "places",
-      "arts"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["places", "arts"],
+    "pos": ["noun"]
   },
   {
     "word": "music",
-    "categories": [
-      "art",
-      "performing-arts",
-      "sound"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["art", "performing-arts", "sound"],
+    "pos": ["noun"]
   },
   {
     "word": "never",
-    "categories": [
-      "adverbs"
-    ],
-    "pos": [
-      "adverb"
-    ]
+    "categories": ["adverbs"],
+    "pos": ["adverb"]
   },
   {
     "word": "nose",
-    "categories": [
-      "body"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["body"],
+    "pos": ["noun"]
   },
   {
     "word": "notebook",
-    "categories": [
-      "school"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["school"],
+    "pos": ["noun"]
   },
   {
     "word": "noun",
-    "categories": [
-      "language",
-      "grammar",
-      "parts-of-speech"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["language", "grammar", "parts-of-speech"],
+    "pos": ["noun"]
   },
   {
     "word": "nurse",
-    "categories": [
-      "occupations"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["occupations"],
+    "pos": ["noun"]
   },
   {
     "word": "ocean",
-    "categories": [
-      "geology",
-      "water-bodies",
-      "marine"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["geology", "water-bodies", "marine"],
+    "pos": ["noun"]
   },
   {
     "word": "often",
-    "categories": [
-      "adverbs"
-    ],
-    "pos": [
-      "adverb"
-    ]
+    "categories": ["adverbs"],
+    "pos": ["adverb"]
   },
   {
     "word": "orange",
-    "categories": [
-      "food",
-      "fruit"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["food", "fruit"],
+    "pos": ["noun"]
   },
   {
     "word": "orange-color",
-    "categories": [
-      "colors"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["colors"],
+    "pos": ["adjective"]
   },
   {
     "word": "owl",
-    "categories": [
-      "animals"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals"],
+    "pos": ["noun"]
   },
   {
     "word": "paint",
-    "categories": [
-      "art",
-      "materials",
-      "actions"
-    ],
-    "pos": [
-      "noun",
-      "verb"
-    ]
+    "categories": ["art", "materials", "actions"],
+    "pos": ["noun", "verb"]
   },
   {
     "word": "pants",
-    "categories": [
-      "clothing"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["clothing"],
+    "pos": ["noun"]
   },
   {
     "word": "paragraph",
-    "categories": [
-      "language",
-      "writing",
-      "composition"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["language", "writing", "composition"],
+    "pos": ["noun"]
   },
   {
     "word": "park",
-    "categories": [
-      "places",
-      "recreation",
-      "outdoor-spaces"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["places", "recreation", "outdoor-spaces"],
+    "pos": ["noun"]
   },
   {
     "word": "parrot",
-    "categories": [
-      "animals"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals"],
+    "pos": ["noun"]
   },
   {
     "word": "past",
-    "categories": [
-      "history",
-      "time-periods",
-      "concepts"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["history", "time-periods", "concepts"],
+    "pos": ["noun"]
   },
   {
     "word": "peach",
-    "categories": [
-      "food",
-      "fruit"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["food", "fruit"],
+    "pos": ["noun"]
   },
   {
     "word": "pear",
-    "categories": [
-      "food",
-      "fruit"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["food", "fruit"],
+    "pos": ["noun"]
   },
   {
     "word": "pencil",
-    "categories": [
-      "school"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["school"],
+    "pos": ["noun"]
   },
   {
     "word": "penguin",
-    "categories": [
-      "animals",
-      "birds",
-      "aquatic"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals", "birds", "aquatic"],
+    "pos": ["noun"]
   },
   {
     "word": "phone",
-    "categories": [
-      "technology",
-      "electronics",
-      "communication-devices"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["technology", "electronics", "communication-devices"],
+    "pos": ["noun"]
   },
   {
     "word": "piano",
-    "categories": [
-      "music",
-      "instruments",
-      "keyboard"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["music", "instruments", "keyboard"],
+    "pos": ["noun"]
   },
   {
     "word": "pilot",
-    "categories": [
-      "occupations",
-      "transport"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["occupations", "transport"],
+    "pos": ["noun"]
   },
   {
     "word": "pizza",
-    "categories": [
-      "food"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["food"],
+    "pos": ["noun"]
   },
   {
     "word": "plane",
-    "categories": [
-      "transport"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["transport"],
+    "pos": ["noun"]
   },
   {
     "word": "planet",
-    "categories": [
-      "space",
-      "celestial-bodies",
-      "solar-system"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["space", "celestial-bodies", "solar-system"],
+    "pos": ["noun"]
   },
   {
     "word": "plastic",
-    "categories": [
-      "materials",
-      "synthetic",
-      "polymers"
-    ],
-    "pos": [
-      "noun",
-      "adjective"
-    ]
+    "categories": ["materials", "synthetic", "polymers"],
+    "pos": ["noun", "adjective"]
   },
   {
     "word": "plate",
-    "categories": [
-      "home"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["home"],
+    "pos": ["noun"]
   },
   {
     "word": "play",
-    "categories": [
-      "actions",
-      "toys"
-    ],
-    "pos": [
-      "verb"
-    ]
+    "categories": ["actions", "toys"],
+    "pos": ["verb"]
   },
   {
     "word": "plum",
-    "categories": [
-      "food",
-      "fruit"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["food", "fruit"],
+    "pos": ["noun"]
   },
   {
     "word": "poem",
-    "categories": [
-      "language",
-      "literature",
-      "writing"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["language", "literature", "writing"],
+    "pos": ["noun"]
   },
   {
     "word": "police",
-    "categories": [
-      "occupations"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["occupations"],
+    "pos": ["noun"]
   },
   {
     "word": "polite",
-    "categories": [
-      "emotions"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["emotions"],
+    "pos": ["adjective"]
   },
   {
     "word": "present",
-    "categories": [
-      "history",
-      "time-periods",
-      "concepts"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["history", "time-periods", "concepts"],
+    "pos": ["noun"]
   },
   {
     "word": "purple",
-    "categories": [
-      "colors",
-      "secondary-colors",
-      "cool-colors"
-    ],
-    "pos": [
-      "adjective",
-      "noun"
-    ]
+    "categories": ["colors", "secondary-colors", "cool-colors"],
+    "pos": ["adjective", "noun"]
   },
   {
     "word": "puzzle",
-    "categories": [
-      "toys"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["toys"],
+    "pos": ["noun"]
   },
   {
     "word": "quickly",
-    "categories": [
-      "adverbs"
-    ],
-    "pos": [
-      "adverb"
-    ]
+    "categories": ["adverbs"],
+    "pos": ["adverb"]
   },
   {
     "word": "quiet",
-    "categories": [
-      "qualities"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["qualities"],
+    "pos": ["adjective"]
   },
   {
     "word": "rabbit",
-    "categories": [
-      "animals"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals"],
+    "pos": ["noun"]
   },
   {
     "word": "rain",
-    "categories": [
-      "weather",
-      "precipitation",
-      "water-cycle"
-    ],
-    "pos": [
-      "noun",
-      "verb"
-    ]
+    "categories": ["weather", "precipitation", "water-cycle"],
+    "pos": ["noun", "verb"]
   },
   {
     "word": "rarely",
-    "categories": [
-      "adverbs"
-    ],
-    "pos": [
-      "adverb"
-    ]
+    "categories": ["adverbs"],
+    "pos": ["adverb"]
   },
   {
     "word": "read",
-    "categories": [
-      "actions",
-      "school"
-    ],
-    "pos": [
-      "verb"
-    ]
+    "categories": ["actions", "school"],
+    "pos": ["verb"]
   },
   {
     "word": "rectangle",
-    "categories": [
-      "math",
-      "shapes",
-      "geometry"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["math", "shapes", "geometry"],
+    "pos": ["noun"]
   },
   {
     "word": "red",
-    "categories": [
-      "colors",
-      "primary-colors",
-      "warm-colors"
-    ],
-    "pos": [
-      "adjective",
-      "noun"
-    ]
+    "categories": ["colors", "primary-colors", "warm-colors"],
+    "pos": ["adjective", "noun"]
   },
   {
     "word": "restaurant",
-    "categories": [
-      "places",
-      "food-service",
-      "dining"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["places", "food-service", "dining"],
+    "pos": ["noun"]
   },
   {
     "word": "river",
-    "categories": [
-      "geology",
-      "water-bodies",
-      "freshwater"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["geology", "water-bodies", "freshwater"],
+    "pos": ["noun"]
   },
   {
     "word": "riverbank",
-    "categories": [
-      "places",
-      "nature"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["places", "nature"],
+    "pos": ["noun"]
   },
   {
     "word": "robot",
-    "categories": [
-      "technology",
-      "machines",
-      "automation"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["technology", "machines", "automation"],
+    "pos": ["noun"]
   },
   {
     "word": "rough",
-    "categories": [
-      "texture",
-      "surface-feel",
-      "uneven"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["texture", "surface-feel", "uneven"],
+    "pos": ["adjective"]
   },
   {
     "word": "round",
-    "categories": [
-      "shapes",
-      "2d-shapes",
-      "curved"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["shapes", "2d-shapes", "curved"],
+    "pos": ["adjective"]
   },
   {
     "word": "run",
-    "categories": [
-      "sports"
-    ],
-    "pos": [
-      "verb"
-    ]
+    "categories": ["sports"],
+    "pos": ["verb"]
   },
   {
     "word": "running",
-    "categories": [
-      "sports",
-      "athletics",
-      "individual-sports"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["sports", "athletics", "individual-sports"],
+    "pos": ["noun"]
   },
   {
     "word": "sad",
-    "categories": [
-      "emotions"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["emotions"],
+    "pos": ["adjective"]
   },
   {
     "word": "scared",
-    "categories": [
-      "emotions"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["emotions"],
+    "pos": ["adjective"]
   },
   {
     "word": "scarf",
-    "categories": [
-      "clothing"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["clothing"],
+    "pos": ["noun"]
   },
   {
     "word": "school",
-    "categories": [
-      "buildings",
-      "education",
-      "learning-facilities"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["buildings", "education", "learning-facilities"],
+    "pos": ["noun"]
   },
   {
     "word": "school-place",
-    "categories": [
-      "places",
-      "school"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["places", "school"],
+    "pos": ["noun"]
   },
   {
     "word": "scooter",
-    "categories": [
-      "transport"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["transport"],
+    "pos": ["noun"]
   },
   {
     "word": "sculpture",
-    "categories": [
-      "art",
-      "creation",
-      "3d-art"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["art", "creation", "3d-art"],
+    "pos": ["noun"]
   },
   {
     "word": "sentence",
-    "categories": [
-      "language",
-      "grammar",
-      "writing"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["language", "grammar", "writing"],
+    "pos": ["noun"]
   },
   {
     "word": "shark",
-    "categories": [
-      "animals",
-      "fish",
-      "predators"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals", "fish", "predators"],
+    "pos": ["noun"]
   },
   {
     "word": "sheep",
-    "categories": [
-      "animals"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals"],
+    "pos": ["noun"]
   },
   {
     "word": "ship",
-    "categories": [
-      "transportation",
-      "vehicles",
-      "water-transport"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["transportation", "vehicles", "water-transport"],
+    "pos": ["noun"]
   },
   {
     "word": "shirt",
-    "categories": [
-      "clothing"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["clothing"],
+    "pos": ["noun"]
   },
   {
     "word": "shoes",
-    "categories": [
-      "clothing"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["clothing"],
+    "pos": ["noun"]
   },
   {
     "word": "silently",
-    "categories": [
-      "adverbs"
-    ],
-    "pos": [
-      "adverb"
-    ]
+    "categories": ["adverbs"],
+    "pos": ["adverb"]
   },
   {
     "word": "sing",
-    "categories": [
-      "actions"
-    ],
-    "pos": [
-      "verb"
-    ]
+    "categories": ["actions"],
+    "pos": ["verb"]
   },
   {
     "word": "singer",
-    "categories": [
-      "occupations",
-      "arts"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["occupations", "arts"],
+    "pos": ["noun"]
   },
   {
     "word": "sleep",
-    "categories": [
-      "actions"
-    ],
-    "pos": [
-      "verb"
-    ]
+    "categories": ["actions"],
+    "pos": ["verb"]
   },
   {
     "word": "slow",
-    "categories": [
-      "adverbs"
-    ],
-    "pos": [
-      "adverb"
-    ]
+    "categories": ["adverbs"],
+    "pos": ["adverb"]
   },
   {
     "word": "slowly",
-    "categories": [
-      "adverbs"
-    ],
-    "pos": [
-      "adverb"
-    ]
+    "categories": ["adverbs"],
+    "pos": ["adverb"]
   },
   {
     "word": "small",
-    "categories": [
-      "sizes",
-      "relative-size",
-      "tiny"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["sizes", "relative-size", "tiny"],
+    "pos": ["adjective"]
   },
   {
     "word": "smile",
-    "categories": [
-      "actions",
-      "emotions"
-    ],
-    "pos": [
-      "verb",
-      "noun"
-    ]
+    "categories": ["actions", "emotions"],
+    "pos": ["verb", "noun"]
   },
   {
     "word": "smooth",
-    "categories": [
-      "texture",
-      "surface-feel",
-      "even"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["texture", "surface-feel", "even"],
+    "pos": ["adjective"]
   },
   {
     "word": "snake",
-    "categories": [
-      "animals",
-      "reptiles",
-      "predators"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals", "reptiles", "predators"],
+    "pos": ["noun"]
   },
   {
     "word": "snow",
-    "categories": [
-      "weather",
-      "precipitation",
-      "winter"
-    ],
-    "pos": [
-      "noun",
-      "verb"
-    ]
+    "categories": ["weather", "precipitation", "winter"],
+    "pos": ["noun", "verb"]
   },
   {
     "word": "soccer",
-    "categories": [
-      "sports",
-      "team-sports",
-      "ball-games"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["sports", "team-sports", "ball-games"],
+    "pos": ["noun"]
   },
   {
     "word": "sock",
-    "categories": [
-      "clothing"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["clothing"],
+    "pos": ["noun"]
   },
   {
     "word": "sofa",
-    "categories": [
-      "home"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["home"],
+    "pos": ["noun"]
   },
   {
     "word": "soft",
-    "categories": [
-      "texture",
-      "tactile",
-      "yielding"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["texture", "tactile", "yielding"],
+    "pos": ["adjective"]
   },
   {
     "word": "solid",
-    "categories": [
-      "physical-properties",
-      "state-of-matter",
-      "rigid"
-    ],
-    "pos": [
-      "adjective",
-      "noun"
-    ]
+    "categories": ["physical-properties", "state-of-matter", "rigid"],
+    "pos": ["adjective", "noun"]
   },
   {
     "word": "sometimes",
-    "categories": [
-      "adverbs"
-    ],
-    "pos": [
-      "adverb"
-    ]
+    "categories": ["adverbs"],
+    "pos": ["adverb"]
   },
   {
     "word": "soup",
-    "categories": [
-      "food"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["food"],
+    "pos": ["noun"]
   },
   {
     "word": "spherical",
-    "categories": [
-      "shapes",
-      "3d-shapes",
-      "curved"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["shapes", "3d-shapes", "curved"],
+    "pos": ["adjective"]
   },
   {
     "word": "spoon",
-    "categories": [
-      "home"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["home"],
+    "pos": ["noun"]
   },
   {
     "word": "square",
-    "categories": [
-      "math",
-      "shapes",
-      "geometry"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["math", "shapes", "geometry"],
+    "pos": ["noun"]
   },
   {
     "word": "squirrel",
-    "categories": [
-      "animals"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals"],
+    "pos": ["noun"]
   },
   {
     "word": "stadium",
-    "categories": [
-      "places",
-      "sports",
-      "event-venues"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["places", "sports", "event-venues"],
+    "pos": ["noun"]
   },
   {
     "word": "star",
-    "categories": [
-      "space",
-      "celestial-bodies",
-      "stellar"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["space", "celestial-bodies", "stellar"],
+    "pos": ["noun"]
   },
   {
     "word": "station",
-    "categories": [
-      "places",
-      "transport"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["places", "transport"],
+    "pos": ["noun"]
   },
   {
     "word": "sticky",
-    "categories": [
-      "texture",
-      "surface-properties",
-      "adhesive"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["texture", "surface-properties", "adhesive"],
+    "pos": ["adjective"]
   },
   {
     "word": "store",
-    "categories": [
-      "places"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["places"],
+    "pos": ["noun"]
   },
   {
     "word": "storm",
-    "categories": [
-      "weather",
-      "severe-weather",
-      "atmospheric-events"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["weather", "severe-weather", "atmospheric-events"],
+    "pos": ["noun"]
   },
   {
     "word": "story",
-    "categories": [
-      "language",
-      "literature",
-      "writing"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["language", "literature", "writing"],
+    "pos": ["noun"]
   },
   {
     "word": "straight",
-    "categories": [
-      "shapes",
-      "lines",
-      "linear"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["shapes", "lines", "linear"],
+    "pos": ["adjective"]
   },
   {
     "word": "student",
-    "categories": [
-      "school"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["school"],
+    "pos": ["noun"]
   },
   {
     "word": "subtract",
-    "categories": [
-      "math",
-      "arithmetic",
-      "operations"
-    ],
-    "pos": [
-      "verb"
-    ]
+    "categories": ["math", "arithmetic", "operations"],
+    "pos": ["verb"]
   },
   {
     "word": "suddenly",
-    "categories": [
-      "adverbs"
-    ],
-    "pos": [
-      "adverb"
-    ]
+    "categories": ["adverbs"],
+    "pos": ["adverb"]
   },
   {
     "word": "sun",
-    "categories": [
-      "nature",
-      "weather"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["nature", "weather"],
+    "pos": ["noun"]
   },
   {
     "word": "swim",
-    "categories": [
-      "sports"
-    ],
-    "pos": [
-      "verb"
-    ]
+    "categories": ["sports"],
+    "pos": ["verb"]
   },
   {
     "word": "swimming",
-    "categories": [
-      "sports",
-      "water-sports",
-      "individual-sports"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["sports", "water-sports", "individual-sports"],
+    "pos": ["noun"]
   },
   {
     "word": "table",
-    "categories": [
-      "home"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["home"],
+    "pos": ["noun"]
   },
   {
     "word": "taxi",
-    "categories": [
-      "transport"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["transport"],
+    "pos": ["noun"]
   },
   {
     "word": "teacher",
-    "categories": [
-      "professions",
-      "education",
-      "instruction"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["professions", "education", "instruction"],
+    "pos": ["noun"]
   },
   {
     "word": "teddy",
-    "categories": [
-      "toys"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["toys"],
+    "pos": ["noun"]
   },
   {
     "word": "television",
-    "categories": [
-      "technology",
-      "electronics",
-      "entertainment-devices"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["technology", "electronics", "entertainment-devices"],
+    "pos": ["noun"]
   },
   {
     "word": "tennis",
-    "categories": [
-      "sports",
-      "racket-sports",
-      "court-games"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["sports", "racket-sports", "court-games"],
+    "pos": ["noun"]
   },
   {
     "word": "theater",
-    "categories": [
-      "places",
-      "entertainment",
-      "performance-venues"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["places", "entertainment", "performance-venues"],
+    "pos": ["noun"]
   },
   {
     "word": "throw",
-    "categories": [
-      "sports"
-    ],
-    "pos": [
-      "verb"
-    ]
+    "categories": ["sports"],
+    "pos": ["verb"]
   },
   {
     "word": "tiger",
-    "categories": [
-      "animals",
-      "mammals",
-      "predators",
-      "big-cats"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals", "mammals", "predators", "big-cats"],
+    "pos": ["noun"]
   },
   {
     "word": "tiny",
-    "categories": [
-      "sizes",
-      "relative-size",
-      "very-small"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["sizes", "relative-size", "very-small"],
+    "pos": ["adjective"]
   },
   {
     "word": "tired",
-    "categories": [
-      "emotions"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["emotions"],
+    "pos": ["adjective"]
   },
   {
     "word": "toycar",
-    "categories": [
-      "toys"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["toys"],
+    "pos": ["noun"]
   },
   {
     "word": "train",
-    "categories": [
-      "transportation",
-      "vehicles",
-      "rail-transport"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["transportation", "vehicles", "rail-transport"],
+    "pos": ["noun"]
   },
   {
     "word": "tram",
-    "categories": [
-      "transport"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["transport"],
+    "pos": ["noun"]
   },
   {
     "word": "tree",
-    "categories": [
-      "plants",
-      "vegetation",
-      "woody-plants"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["plants", "vegetation", "woody-plants"],
+    "pos": ["noun"]
   },
   {
     "word": "triangle",
-    "categories": [
-      "math",
-      "shapes",
-      "geometry"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["math", "shapes", "geometry"],
+    "pos": ["noun"]
   },
   {
     "word": "truck",
-    "categories": [
-      "transport"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["transport"],
+    "pos": ["noun"]
   },
   {
     "word": "turtle",
-    "categories": [
-      "animals",
-      "reptiles",
-      "aquatic"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["animals", "reptiles", "aquatic"],
+    "pos": ["noun"]
   },
   {
     "word": "valley",
-    "categories": [
-      "geology",
-      "landforms",
-      "low-terrain"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["geology", "landforms", "low-terrain"],
+    "pos": ["noun"]
   },
   {
     "word": "verb",
-    "categories": [
-      "language",
-      "grammar",
-      "parts-of-speech"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["language", "grammar", "parts-of-speech"],
+    "pos": ["noun"]
   },
   {
     "word": "village",
-    "categories": [
-      "places"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["places"],
+    "pos": ["noun"]
   },
   {
     "word": "violin",
-    "categories": [
-      "music",
-      "instruments",
-      "strings"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["music", "instruments", "strings"],
+    "pos": ["noun"]
   },
   {
     "word": "volcano",
-    "categories": [
-      "geology",
-      "landforms",
-      "geological-features"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["geology", "landforms", "geological-features"],
+    "pos": ["noun"]
   },
   {
     "word": "walk",
-    "categories": [
-      "actions"
-    ],
-    "pos": [
-      "verb"
-    ]
+    "categories": ["actions"],
+    "pos": ["verb"]
   },
   {
     "word": "warm",
-    "categories": [
-      "temperature",
-      "thermal-state",
-      "moderate-high"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["temperature", "thermal-state", "moderate-high"],
+    "pos": ["adjective"]
   },
   {
     "word": "white",
-    "categories": [
-      "colors"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "categories": ["colors"],
+    "pos": ["adjective"]
   },
   {
     "word": "wind",
-    "categories": [
-      "weather",
-      "atmosphere",
-      "air-movement"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["weather", "atmosphere", "air-movement"],
+    "pos": ["noun"]
   },
   {
-    "word": "wooden",
-    "categories": [
-      "materials",
-      "natural",
-      "wood-based"
-    ],
-    "pos": [
-      "adjective"
-    ]
+    "word": "wood",
+    "categories": ["materials", "natural", "wood-based"],
+    "pos": ["adjective"]
   },
   {
     "word": "write",
-    "categories": [
-      "actions",
-      "school"
-    ],
-    "pos": [
-      "verb"
-    ]
+    "categories": ["actions", "school"],
+    "pos": ["verb"]
   },
   {
     "word": "yellow",
-    "categories": [
-      "colors",
-      "primary-colors",
-      "warm-colors"
-    ],
-    "pos": [
-      "adjective",
-      "noun"
-    ]
+    "categories": ["colors", "primary-colors", "warm-colors"],
+    "pos": ["adjective", "noun"]
   },
   {
     "word": "zoo",
-    "categories": [
-      "places",
-      "animals"
-    ],
-    "pos": [
-      "noun"
-    ]
+    "categories": ["places", "animals"],
+    "pos": ["noun"]
   }
 ]
