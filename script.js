@@ -1,5 +1,5 @@
-import { shuffle } from "./game-core.mjs";
 import {
+  shuffle,
   getNextPuzzleId,
   getPuzzle,
   getRandomPuzzleId,
