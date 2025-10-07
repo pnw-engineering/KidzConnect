@@ -1,14 +1,6 @@
 // Core game logic exported as a small ES module
-export function shuffle(array) {
-  const arr = array.slice();
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-}
-
-const puzzles = [
+let puzzles = [];
+const builtInPuzzles = [
   {
     id: 1,
     title: "Pets & Playground",
@@ -37,6 +29,7 @@ const puzzles = [
       ["Apple", "Banana", "Orange", "Grapes"],
       ["Car", "Bus", "Bike", "Truck"],
     ],
+    groupLabels: ["Pets", "Playground Equipment", "Fruits", "Vehicles"],
   },
   {
     id: 2,
@@ -65,6 +58,7 @@ const puzzles = [
       ["Apple", "Banana", "Orange", "Grapes"],
       ["Car", "Bus", "Bike", "Truck"],
     ],
+    groupLabels: ["School Supplies", "Classroom Things", "Fruits", "Vehicles"],
   },
   {
     id: 3,
@@ -126,13 +120,18 @@ const puzzles = [
 
 export function getPuzzle(id = 1, { shuffleChoices = true } = {}) {
   const p = puzzles.find((x) => x.id === id) || puzzles[0];
+  console.log("Loading puzzle:", id);
+  console.log("Original puzzle data:", JSON.stringify(p, null, 2));
   const choices = shuffleChoices ? shuffle(p.choices) : p.choices.slice();
-  return {
+  const result = {
     id: p.id,
     title: p.title,
     choices,
     groups: p.groups.map((g) => g.slice()),
+    groupLabels: p.groupLabels ? [...p.groupLabels] : [], // Copy the groupLabels if they exist
   };
+  console.log("Returned puzzle data:", JSON.stringify(result, null, 2));
+  return result;
 }
 
 export function getNextPuzzleId(currentId) {
@@ -146,6 +145,37 @@ export function getRandomPuzzleId(exceptId = null) {
   if (ids.length === 0) return exceptId || puzzles[0].id;
   const i = Math.floor(Math.random() * ids.length);
   return ids[i];
+}
+
+// Initialize puzzles by loading generated ones and combining with built-in
+export async function initializePuzzles() {
+  // First, initialize with built-in puzzles
+  puzzles = [...builtInPuzzles];
+  console.log("Initialized with built-in puzzles:", puzzles.length);
+
+  // Then load generated puzzles if available
+  try {
+    const response = await fetch("puzzles.generated.json");
+    if (response.ok) {
+      const generatedPuzzles = await response.json();
+      console.log(`Loaded ${generatedPuzzles.length} generated puzzles`);
+
+      // Ensure generated puzzles have unique IDs by offsetting them
+      const maxBuiltInId = Math.max(...puzzles.map((p) => p.id));
+      const offsetGeneratedPuzzles = generatedPuzzles.map((p, index) => ({
+        ...p,
+        id: maxBuiltInId + index + 1,
+        title: `Generated Puzzle ${index + 1}`,
+      }));
+
+      // Add generated puzzles to the collection
+      puzzles.push(...offsetGeneratedPuzzles);
+      console.log("Total puzzles after loading generated:", puzzles.length);
+    }
+  } catch (e) {
+    console.warn("Failed to load generated puzzles:", e);
+  }
+  return puzzles.length;
 }
 
 export function getAllPuzzles() {

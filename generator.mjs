@@ -4,6 +4,7 @@
 let master = null; // array of {word, categories, pos}
 let categoryMap = null; // category -> [word,...]
 let categoryOriginal = null; // key -> original category string as found
+let categoryPosMap = new Map(); // category -> Set of POS
 
 export async function loadMasterWordlist(url = "master_wordlist.json") {
   if (master) return { master, categoryMap };
@@ -24,6 +25,8 @@ export async function loadMasterWordlist(url = "master_wordlist.json") {
   categoryMap = new Map();
   categoryOriginal = new Map();
 
+  categoryPosMap.clear(); // Reset POS map on reload
+
   for (const entry of master) {
     const w = String(entry.word).trim();
     // gather categories from both `categories` and `pos` fields
@@ -34,8 +37,9 @@ export async function loadMasterWordlist(url = "master_wordlist.json") {
         ? entry.pos
         : [entry.pos]
       : [];
-    const allCats = [...cats, ...posArr];
-    for (const c of allCats) {
+
+    for (const c of cats) {
+      // Only use non-POS categories
       if (c == null) continue;
       const raw = String(c).trim();
       if (raw === "") continue;
@@ -43,14 +47,29 @@ export async function loadMasterWordlist(url = "master_wordlist.json") {
       // store the first-seen original label for display
       if (!categoryOriginal.has(key)) categoryOriginal.set(key, raw);
       if (!categoryMap.has(key)) categoryMap.set(key, new Set());
+      if (!categoryPosMap.has(key)) categoryPosMap.set(key, new Set());
       categoryMap.get(key).add(w);
+      // Track POS for each category
+      for (const pos of posArr) {
+        categoryPosMap.get(key).add(pos.toLowerCase());
+      }
     }
   }
 
-  // convert sets to arrays and filter out categories with fewer than 4 unique words
+  // convert sets to arrays and filter out categories with fewer than 4 or more than 4 unique words
   for (const [k, set] of Array.from(categoryMap.entries())) {
     const arr = Array.from(set.values());
-    if (arr.length < 4) {
+    if (arr.length < 4 || arr.length > 4) {
+      // If we have more than 4 words, take a random sample of exactly 4
+      if (arr.length > 4) {
+        // Use stable seed for consistent sampling
+        const rng = seededRng(
+          k.split("").reduce((a, c) => a + c.charCodeAt(0), 0)
+        );
+        const sampledArr = chooseRandom(arr, rng, 4);
+        categoryMap.set(k, sampledArr);
+        continue;
+      }
       categoryMap.delete(k);
       categoryOriginal.delete(k);
     } else {
@@ -84,8 +103,17 @@ function chooseRandom(arr, rng, k = 1) {
 export function generatePuzzle({ seed = null, title = null } = {}) {
   // categoryMap must have been built (or be empty)
   const rng = seed == null ? Math.random : seededRng(Number(seed));
-  const cats = Array.from((categoryMap && categoryMap.keys()) || []);
-  if (cats.length < 4) {
+
+  // Filter out categories with more than one POS
+  const validCats = Array.from(
+    (categoryMap && categoryMap.keys()) || []
+  ).filter((cat) => {
+    const posSet = categoryPosMap.get(cat);
+    return posSet && posSet.size <= 1; // Keep categories with 0 or 1 POS types
+  });
+
+  // Try to generate puzzle with valid categories
+  if (validCats.length < 4) {
     // fallback: try to build some simple categories from common POS or use words directly
     const words = (master || []).map((e) => e.word).slice();
     // if not enough words, return null
@@ -151,8 +179,38 @@ export function generatePuzzle({ seed = null, title = null } = {}) {
     };
   }
 
-  // choose 4 distinct display groups
-  const chosenDisplayGroups = chooseRandom(displayGroups, rng, 4);
+  // Track used categories and their POS
+  const usedCats = new Set();
+  const usedPos = new Set();
+
+  // Choose display groups one at a time to ensure category and POS uniqueness
+  const chosenDisplayGroups = [];
+  const shuffledGroups = displayGroups.sort(() => (rng() > 0.5 ? 1 : -1));
+
+  for (const group of shuffledGroups) {
+    const catKey = group.key.toLowerCase();
+    const catPos = categoryPosMap.get(catKey)?.values().next().value; // Get the single POS if it exists
+
+    // Skip if category was already used
+    if (usedCats.has(catKey)) continue;
+
+    // Skip if this POS was already used and the category has a POS
+    if (catPos && usedPos.has(catPos)) continue;
+
+    // Accept this category
+    chosenDisplayGroups.push(group);
+    usedCats.add(catKey);
+    if (catPos) usedPos.add(catPos);
+
+    // Break if we have enough groups
+    if (chosenDisplayGroups.length === 4) break;
+  }
+
+  // If we couldn't find 4 valid groups, fall back to default behavior
+  if (chosenDisplayGroups.length < 4) {
+    return generatePuzzle({ seed: Number(seed) + 1, title }); // Try again with next seed
+  }
+
   const groups = [];
   const allWords = [];
   for (const dg of chosenDisplayGroups) {

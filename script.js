@@ -1,9 +1,9 @@
 import {
-  shuffle,
   getNextPuzzleId,
   getPuzzle,
   getRandomPuzzleId,
   initializePuzzles,
+  shuffle,
 } from "./game.mjs";
 import {
   generatePuzzle,

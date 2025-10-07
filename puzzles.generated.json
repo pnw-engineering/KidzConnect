@@ -3,48 +3,108 @@
     "id": 1,
     "title": "Puzzle 1",
     "choices": [
-      "Student",
-      "Chef",
-      "Cheese",
-      "Blue",
-      "Eraser",
-      "Pencil",
-      "Firefighter",
-      "Kiwi",
-      "Desk",
-      "Red",
-      "Farmer",
-      "Yellow",
-      "Orange",
-      "White",
-      "Banana",
-      "Nurse"
+      "Hat",
+      "Light",
+      "Shirt",
+      "Gas",
+      "Slowly",
+      "Rarely",
+      "Fast",
+      "Cup",
+      "Heavy",
+      "Liquid",
+      "Sofa",
+      "Table",
+      "Plate",
+      "Coat",
+      "Quickly",
+      "Pants"
     ],
     "groups": [
       [
-        "Farmer",
-        "Firefighter",
-        "Chef",
-        "Nurse"
+        "Slowly",
+        "Quickly",
+        "Rarely",
+        "Fast"
       ],
       [
-        "Eraser",
-        "Student",
-        "Desk",
-        "Pencil"
+        "Pants",
+        "Shirt",
+        "Coat",
+        "Hat"
       ],
       [
-        "Blue",
-        "Yellow",
-        "White",
-        "Red"
+        "Table",
+        "Plate",
+        "Cup",
+        "Sofa"
       ],
       [
-        "Kiwi",
-        "Orange",
-        "Cheese",
-        "Banana"
+        "Liquid",
+        "Light",
+        "Gas",
+        "Heavy"
       ]
+    ],
+    "groupLabels": [
+      "Adverbs",
+      "Clothing",
+      "Home",
+      "Physical Properties"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Puzzle 2",
+    "choices": [
+      "Friendly",
+      "Crayon",
+      "Loud",
+      "Swimming",
+      "Television",
+      "Swim",
+      "Throw",
+      "Phone",
+      "Quiet",
+      "Internet",
+      "Notebook",
+      "Computer",
+      "Student",
+      "Jump",
+      "Class",
+      "Brilliant"
+    ],
+    "groups": [
+      [
+        "Phone",
+        "Computer",
+        "Television",
+        "Internet"
+      ],
+      [
+        "Brilliant",
+        "Friendly",
+        "Quiet",
+        "Loud"
+      ],
+      [
+        "Throw",
+        "Swim",
+        "Jump",
+        "Swimming"
+      ],
+      [
+        "Student",
+        "Class",
+        "Crayon",
+        "Notebook"
+      ]
+    ],
+    "groupLabels": [
+      "Technology",
+      "Qualities",
+      "Sports",
+      "School"
     ]
   }
 ]
