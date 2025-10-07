@@ -5,7 +5,7 @@
   --accent: #69c0ff;
   --accent-2: #ffd666;
   --text: #1b263b;
-  --tile-h: 72px;
+  /* --tile-h: 72px; */
   --header-h: 80px;
   --hints-btm-pad: 18px;
   --hints-bg: linear-gradient(180deg, #fffaf0, #fff6e6);
@@ -69,37 +69,25 @@
 }
 
 :root {
+  /* Base responsive font sizing */
+  font-size: clamp(8px, min(4.75lvh, 3.25vw), 32px);
+
   /* Responsive variables */
-  --container-padding: 20px;
-  --grid-gap: 18px;
-  --font-size-base: 18px;
-  --font-size-small: 16px;
-  --word-padding: 14px 10px;
-}
+  --container-padding: max(1em, 2vw);
+  --grid-gap: clamp(0.5em, 2vw, 1em);
 
-/* Adjust variables for different screen sizes */
-@media (max-width: 768px) {
-  :root {
-    --tile-h: 64px;
-    --header-h: 70px;
-    --container-padding: 16px;
-    --grid-gap: 14px;
-    --font-size-base: 16px;
-    --font-size-small: 14px;
-    --word-padding: 12px 8px;
-  }
-}
+  /* Dimensions based on viewport */
+  --word-padding: 1ch;
+  /* --tile-h: clamp(4rem, 10vw, 6rem); */
+  --tile-h: 3ch;
+  --header-h: clamp(3rem, 12vw, 5rem);
 
-@media (max-width: 480px) {
-  :root {
-    --tile-h: 56px;
-    --header-h: 60px;
-    --container-padding: 12px;
-    --grid-gap: 10px;
-    --font-size-base: 14px;
-    --font-size-small: 13px;
-    --word-padding: 10px 6px;
-  }
+  /* Responsive spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
 }
 
 * {
@@ -117,18 +105,13 @@ body {
 }
 
 body {
-  min-height: 100vh;
-  min-height: -webkit-fill-available; /* Fix for iOS */
+  height: 100vh;
+  height: 100lvh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   background: radial-gradient(circle at 10% 10%, #e6f7ff, var(--bg));
   color: var(--text);
-  position: fixed; /* Prevent bounce on iOS */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: relative;
 }
 
 .game-header {
@@ -155,7 +138,7 @@ body {
   border: 1px solid var(--border-color);
   background: var(--card);
   color: var(--text);
-  font-size: var(--font-size-small);
+  font-size: 0.5em;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
@@ -173,12 +156,12 @@ body {
 
 .timer {
   font-family: monospace;
-  font-size: 1.2em;
+  font-size: 0.5em;
   font-weight: bold;
   color: var(--text);
-  padding: 5px 10px;
+  padding: 0.5em 0.75em;
   background: var(--card);
-  border-radius: 5px;
+  border-radius: 0.5em;
   border: 1px solid var(--border-color);
   transition: all 0.2s ease-in-out;
 }
@@ -214,7 +197,7 @@ body {
   background: var(--card);
   padding: 8px 15px;
   border-radius: 15px;
-  font-size: var(--font-size-small);
+  font-size: 0.5em;
   color: var(--text);
   border: 1px solid var(--border-color);
   display: flex;
@@ -236,75 +219,30 @@ body {
 }
 
 .container {
-  width: 100%;
-  max-width: 720px;
+  max-width: 70ch;
   padding: var(--container-padding);
-  height: 100%;
-  max-height: 100vh;
-  max-height: -webkit-fill-available; /* Fix for iOS */
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  height: 100vh;
+  height: 100lvh;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  box-sizing: border-box;
+  position: relative;
+  left: 0;
+  transform: none;
+  overflow: hidden;
 }
 
 .puzzle-area {
   display: grid;
-  grid-template-columns: 1fr 240px;
-  grid-template-rows: var(--header-h) repeat(4, var(--tile-h));
-  gap: var(--grid-gap);
+  grid-template-columns: 5fr;
+  gap: 1ch;
   align-items: start;
-}
-
-/* Stack layout on smaller screens */
-/* Tablet-specific layout */
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .container {
-    max-width: 90%;
-    height: auto;
-    min-height: 90vh;
-    margin: auto;
-    padding: 20px;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
-
-  .puzzle-area {
-    grid-template-columns: 1fr 240px;
-    gap: 24px;
-  }
-}
-
-/* Mobile and small tablet layout */
-@media (max-width: 640px) {
-  .puzzle-area {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-  }
-
-  .puzzle-column {
-    grid-row: auto;
-    order: 2; /* Move puzzle below hints on mobile */
-  }
-
-  .hints-column {
-    grid-row: auto;
-    order: 1; /* Move hints above puzzle on mobile */
-    margin-bottom: var(--grid-gap);
-  }
-
-  .container {
-    height: 100%;
-    max-height: -webkit-fill-available;
-    padding: 16px;
-  }
+  /* height: 100%; */
 }
 
 .puzzle-column {
-  grid-row: 2 / span 4;
+  grid-column: 1;
+  grid-row: 2 / span 5;
 }
 
 .hints-column {
@@ -312,18 +250,18 @@ body {
   border: 2px solid var(--hint-border);
   border-radius: 10px;
   padding: 12px;
+  margin: 0 auto;
   box-shadow: 0 6px 18px var(--shadow);
-  /* span the header row plus the 4 tile rows */
   grid-row: 1 / span 5;
+  grid-column: 2;
   display: grid;
-  grid-template-rows: var(--header-h) repeat(4, var(--tile-h));
+  grid-template-rows: repeat(5, 1fr);
   padding-bottom: var(--hints-btm-pad);
 }
 
-/* collapsed state when hints list is hidden: show only header area */
 .hints-column.collapsed {
-  grid-template-rows: var(--header-h);
-  padding-bottom: 8px; /* minimal padding when collapsed */
+  grid-template-rows: 1fr;
+  padding-bottom: 8px;
 }
 
 .hints-header {
@@ -335,7 +273,7 @@ body {
 }
 
 .hints-header h2 {
-  font-size: 16px;
+  font-size: 1em;
   margin: 0;
 }
 
@@ -345,7 +283,6 @@ body {
   grid-template-rows: repeat(4, var(--tile-h));
   gap: 12px;
   align-items: center;
-  /* remove scrolling so hint boxes always line up with rows */
   max-height: none;
   overflow: visible;
 }
@@ -356,6 +293,7 @@ body {
   padding: 8px;
   border-radius: 8px;
   font-weight: 700;
+  font-size: 0.6em;
   text-align: center;
   display: flex;
   align-items: center;
@@ -409,109 +347,170 @@ body {
 
 h1 {
   margin: 0 0 8px;
-  font-size: calc(var(--font-size-base) * 1.5);
+  font-size: 1.5em;
   text-align: center;
 }
 
 .instructions {
-  margin: 0 0 16px;
+  margin: 0 0 1em;
   color: var(--text);
   opacity: 0.9;
-  font-size: var(--font-size-small);
+  font-size: 0.5em;
   text-align: center;
-  max-width: 600px;
+  max-width: 40em;
   margin-left: auto;
   margin-right: auto;
 }
 
-#word-grid {
+.grid-area {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4x4 layout */
-  grid-auto-rows: var(--tile-h);
-  gap: 12px;
-  margin-bottom: 16px;
+  grid-template-rows: repeat(4, 3ch);
+  gap: 1ch;
+  width: 100%;
+  /* max-width: 600px; */
+  margin: 0 auto;
+  /* padding: var(--container-padding); */
+  perspective: 1000px;
 }
 
-/* On narrow screens, switch to 2 columns for readability */
-@media (max-width: 420px) {
-  #word-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.Gridrow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--grid-gap);
+  transform-style: preserve-3d;
 }
 
-.word {
+.Gridcell {
+  position: relative;
+  /* height: var(--tile-h); */
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.Gridcell.word {
   background: linear-gradient(180deg, var(--card), #f8fcff);
   border: 3px solid transparent;
   border-radius: 10px;
-  padding: var(--word-padding);
-  height: var(--tile-h);
-  width: 100%;
   display: flex;
+  flex-grow: 1;
+  min-height: 3ch;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 12px rgba(27, 38, 59, 0.06);
+  box-shadow: 0 6px 12px var(--shadow);
   cursor: pointer;
   font-weight: 600;
   text-align: center;
-  transition: transform 0.12s ease, box-shadow 0.12s ease,
-    background-color 0.12s, opacity 0.12s ease-in-out;
-  will-change: transform;
-  line-height: 1.2;
-  position: relative;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, background, box-shadow;
+  /* Text styling moved from .text-fit to cell directly */
+  font-size: clamp(
+    12px,
+    2.5vw,
+    24px
+  ); /* Responsive font size with reasonable bounds */
+  white-space: nowrap;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  hyphens: none;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Container for text that will be auto-scaled */
-.word .text-fit {
-  display: inline-block;
-  padding: 4px;
-  font-size: var(--font-size-base);
-  max-width: 100%;
-  max-height: 100%;
-  white-space: normal;
-  word-break: break-word;
-  /* Add ellipsis if text still overflows after minimum font size */
-  overflow-wrap: break-word;
-  hyphens: auto;
+/* Container for text that will be auto-scaled - REMOVED, styles moved to .word above */
+
+/* Animate text appearance when loaded */
+.Gridcell.word.loaded {
+  opacity: 1;
+  transform: scale(1);
 }
 
-.word:active {
-  transform: translateY(1px);
+.Gridcell.word:hover {
+  transform: translateZ(10px);
+  box-shadow: 0 8px 16px var(--shadow);
 }
-.word:focus {
+
+.Gridcell.word:active {
+  transform: translateZ(5px);
+}
+
+.Gridcell.word:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 4px rgba(105, 192, 255, 0.18);
+  box-shadow: 0 0 0 4px var(--accent), 0 6px 12px var(--shadow);
 }
 
-.word.selected {
+.Gridcell.word.selected {
   background: linear-gradient(180deg, var(--accent), var(--accent-2));
   color: #102;
-  transform: translateY(-4px);
+  transform: translateZ(20px) scale(1.05);
+  box-shadow: 0 12px 24px var(--shadow);
 }
 
-.word.solved {
-  background: linear-gradient(180deg, #d4f5d4, #bff2bf);
-  color: #053;
+.Gridcell.word.solved {
+  background: var(--solved-bg);
+  color: var(--solved-text);
   opacity: 0.95;
-  transform: translateY(0) scale(1);
+  transform: translateZ(0) scale(1);
   box-shadow: none;
   cursor: default;
+  pointer-events: none;
 }
 
-/* subtle pop when tile becomes solved */
-.word.solved.pop {
-  animation: pop 260ms ease forwards;
-}
-
-@keyframes pop {
+/* Animations for state changes */
+@keyframes selectPop {
   0% {
-    transform: translateY(0) scale(0.92);
+    transform: translateZ(0) scale(1);
   }
-  60% {
-    transform: translateY(-6px) scale(1.06);
+  50% {
+    transform: translateZ(30px) scale(1.1);
   }
   100% {
-    transform: translateY(0) scale(1);
+    transform: translateZ(20px) scale(1.05);
   }
+}
+
+@keyframes solvePop {
+  0% {
+    transform: translateZ(20px) scale(1.05);
+  }
+  40% {
+    transform: translateZ(40px) scale(1.15);
+  }
+  100% {
+    transform: translateZ(0) scale(1);
+  }
+}
+
+@keyframes wrongShake {
+  0%,
+  100% {
+    transform: translateZ(20px) translateX(0);
+  }
+  25% {
+    transform: translateZ(20px) translateX(-8px);
+  }
+  75% {
+    transform: translateZ(20px) translateX(8px);
+  }
+}
+
+.Gridcell.word.selected {
+  animation: selectPop 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.Gridcell.word.solved {
+  animation: solvePop 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.Gridcell.word.wrong {
+  animation: wrongShake 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .controls {
@@ -523,14 +522,14 @@ h1 {
 }
 
 .controls button {
-  padding: 8px 12px;
-  border-radius: 8px;
+  padding: 0.75em 1em;
+  border-radius: 0.5em;
   border: 2px solid rgba(27, 38, 59, 0.08);
   background: #fff;
   cursor: pointer;
-  font-size: var(--font-size-small);
-  min-width: 80px; /* Ensure buttons are tappable on mobile */
-  min-height: 44px; /* Better touch target size */
+  font-size: 0.75em;
+  min-width: 5em;
+  min-height: 2.75em;
 }
 
 .controls button:hover {
@@ -555,7 +554,7 @@ h1 {
   bottom: -4px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 10px;
+  font-size: 0.625em;
   background: var(--accent);
   color: white;
   padding: 2px 4px;
@@ -573,27 +572,6 @@ h1 {
   font-weight: 700;
 }
 
-.puzzle-select-wrap {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 12px;
-}
-.puzzle-select-wrap select {
-  padding: 6px 8px;
-  border-radius: 6px;
-  border: 1px solid rgba(27, 38, 59, 0.12);
-  background: #fff;
-}
-
-@media (max-width: 420px) {
-  .word {
-    font-size: 16px;
-    padding: 12px;
-  }
-}
-
 /* iPad and mobile optimizations */
 @supports (-webkit-touch-callout: none) {
   /* iOS-specific optimizations */
@@ -605,21 +583,21 @@ h1 {
     touch-action: manipulation; /* Optimize touch behavior */
   }
 
-  .word {
+  .Gridcell.word {
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
     user-select: none;
   }
 
-  .word:active {
+  .Gridcell.word:active {
     transform: scale(0.95); /* Better touch feedback */
   }
 
   .controls button {
-    padding: 12px 16px; /* Larger touch targets */
-    min-height: 48px;
-    margin: 4px; /* More space between buttons */
+    padding: var(--spacing-md) var(--spacing-lg);
+    min-height: calc(var(--spacing-xl) * 2);
+    margin: var(--spacing-xs);
   }
 
   /* Prevent rubber-band scrolling */

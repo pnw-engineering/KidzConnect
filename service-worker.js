@@ -1,4 +1,4 @@
-const CACHE_NAME = "kidzconnect-v1";
+const CACHE_NAME = "kidzconnect-v4";
 const ASSETS = [
   "./",
   "./index.html",

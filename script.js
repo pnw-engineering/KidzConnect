@@ -1,9 +1,9 @@
+import { shuffle } from "./game-core.mjs";
 import {
-  getAllPuzzles,
   getNextPuzzleId,
   getPuzzle,
   getRandomPuzzleId,
-  shuffle,
+  initializePuzzles,
 } from "./game.mjs";
 import {
   generatePuzzle,
@@ -12,15 +12,13 @@ import {
 } from "./generator.mjs";
 
 let currentPuzzleId = 1;
-let puzzle = getPuzzle(currentPuzzleId, { shuffleChoices: false });
-let words = puzzle.choices;
-let groups = puzzle.groups;
+let puzzle = null;
+let words = [];
+let groups = [];
 let selected = [];
 let solvedSet = new Set(); // indexes of solved groups for current puzzle
 
-const grid = document.getElementById("word-grid");
 const result = document.getElementById("result");
-const puzzleSelect = document.getElementById("puzzle-select");
 
 // Web Audio helpers and sound/speech state
 let audioCtx = null;
@@ -32,7 +30,7 @@ function getAudioCtx() {
 
 // Sound effects state
 let soundMuted = localStorage.getItem("kc-sound-muted") === "1";
-let speechMuted = localStorage.getItem("kc-speech-muted") === "1";
+let speechMuted = false; // Force speech enabled for testing
 
 // debug toggle for hint/category alignment
 const DEBUG_HINTS = false;
@@ -92,49 +90,90 @@ function playShuffle() {
 }
 
 function renderGrid() {
-  grid.innerHTML = "";
-  words.forEach((word, idx) => {
-    const div = document.createElement("div");
-    div.className = "word";
-    div.tabIndex = 0;
-    div.setAttribute("role", "listitem");
-    div.dataset.word = word;
+  // Use existing static grid elements instead of creating new ones
+  for (let idx = 0; idx < 16; idx++) {
+    const cell = document.getElementById(`word-${idx}`);
 
-    // Create inner container for text that will be auto-scaled
-    const textDiv = document.createElement("div");
-    textDiv.className = "text-fit";
-    textDiv.textContent = word;
-    div.appendChild(textDiv);
-
-    // Add auto-scaling after the element is added to the DOM
-    requestAnimationFrame(() => fitText(textDiv));
-
-    // visually mark solved words and disable interaction
-    if (isWordSolved(word)) {
-      div.classList.add("solved");
-      div.tabIndex = -1;
+    if (!cell) {
+      console.error(`Could not find word-${idx} element`);
+      continue;
     }
 
-    div.addEventListener("click", () => toggleWord(div, word));
-    div.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        toggleWord(div, word);
+    const word = words[idx];
+    const rowIdx = Math.floor(idx / 4);
+    const colIdx = idx % 4;
+
+    if (word) {
+      // Update content and attributes - text goes directly on cell now
+      cell.textContent = word;
+
+      // Clear any inline styles that might override CSS
+      cell.style.fontSize = "";
+      cell.style.whiteSpace = "";
+      cell.style.wordBreak = "";
+      cell.style.overflowWrap = "";
+      cell.style.hyphens = "";
+
+      cell.setAttribute("aria-label", word);
+      cell.setAttribute("aria-selected", "false");
+      cell.setAttribute("aria-colindex", colIdx + 1);
+      cell.setAttribute("aria-rowindex", rowIdx + 1);
+      cell.dataset.word = word;
+      cell.dataset.row = rowIdx;
+      cell.dataset.col = colIdx;
+
+      // Add group data
+      const groupIndices = [];
+      groups.forEach((g, i) => {
+        if (g.includes(word)) groupIndices.push(i);
+      });
+      if (groupIndices.length) {
+        cell.dataset.groups = groupIndices.join(",");
+      } else {
+        delete cell.dataset.groups;
       }
-    });
 
-    // Add a data attribute for the group indices this word belongs to
-    const groupIndices = [];
-    groups.forEach((g, i) => {
-      if (g.includes(word)) groupIndices.push(i);
-    });
-    if (groupIndices.length) {
-      div.dataset.groups = groupIndices.join(",");
+      // Handle solved state
+      if (isWordSolved(word)) {
+        cell.classList.add("solved");
+        cell.tabIndex = -1;
+        cell.setAttribute("aria-disabled", "true");
+      } else {
+        cell.classList.remove("solved");
+        cell.tabIndex = 0;
+        cell.removeAttribute("aria-disabled");
+      }
+
+      // Clear selection state
+      cell.classList.remove("selected");
+
+      // Show the cell
+      cell.style.display = "";
+    } else {
+      // Hide unused cells
+      cell.style.display = "none";
+      cell.textContent = "";
+      cell.removeAttribute("aria-label");
+      delete cell.dataset.word;
+      delete cell.dataset.row;
+      delete cell.dataset.col;
+      delete cell.dataset.groups;
     }
+  }
 
-    grid.appendChild(div);
+  // Initialize text fitting for all visible cells
+  requestAnimationFrame(() => {
+    const wordElements = document.querySelectorAll(".word");
+    wordElements.forEach((el) => {
+      // Temporarily disable fitText - use CSS sizing instead
+      // fitText(el);
+      // Add loaded class after a brief delay to ensure smooth transition
+      setTimeout(() => el.classList.add("loaded"), 50);
+    });
   });
 }
+
+// Helper functions
 
 function isWordSolved(word) {
   for (const si of solvedSet) {
@@ -145,17 +184,26 @@ function isWordSolved(word) {
 }
 
 function reorderWordsAfterSolved() {
-  // Collect solved words in insertion order of solvedSet
+  // Use a Set to ensure unique words and maintain insertion order
+  const seenWords = new Set();
   const solvedWords = [];
+
+  // First add all solved words in group order, skipping duplicates
   for (const si of solvedSet) {
     const g = groups[si] || [];
     for (const w of g) {
-      if (!solvedWords.includes(w)) solvedWords.push(w);
+      if (!seenWords.has(w)) {
+        seenWords.add(w);
+        solvedWords.push(w);
+      }
     }
   }
-  // Remaining words that are not solved
-  const remaining = words.filter((w) => !solvedWords.includes(w));
+
+  // Then add remaining unique words
+  const remaining = words.filter((w) => !seenWords.has(w));
   const shuffledRemaining = shuffle(remaining);
+
+  // Update the words array with unique words only
   words = [...solvedWords, ...shuffledRemaining];
 }
 
@@ -233,15 +281,8 @@ function reorderHintsAccordingToWords(overrides = {}) {
   const map = new Map();
   hintElems.forEach((el) => map.set(String(el.dataset.groupIndex), el));
 
-  // determine current number of columns in the word grid
-  const gridEl = document.getElementById("word-grid");
-  let cols = 4;
-  if (gridEl) {
-    const style = window.getComputedStyle(gridEl);
-    const template = style.getPropertyValue("grid-template-columns") || "";
-    const parts = template.trim().split(/\s+/).filter(Boolean);
-    if (parts.length > 0) cols = parts.length;
-  }
+  // We always use 4 columns in the grid
+  const cols = 4;
 
   // compute a canonical zero-based word-row for each group; respect overrides
   const groupWordRow = new Map();
@@ -253,12 +294,23 @@ function reorderHintsAccordingToWords(overrides = {}) {
       continue;
     }
     const grp = groups[gi] || [];
-    let pos = -1;
-    for (const w of grp) {
-      const idx = words.indexOf(w);
-      if (idx >= 0 && (pos === -1 || idx < pos)) pos = idx;
+    // For solved groups without an override, find their current position in the word list
+    if (solvedSet.has(gi)) {
+      let pos = -1;
+      for (const w of grp) {
+        const idx = words.indexOf(w);
+        if (idx >= 0 && (pos === -1 || idx < pos)) pos = idx;
+      }
+      groupWordRow.set(key, pos === -1 ? Infinity : Math.floor(pos / cols));
+    } else {
+      // For unsolved groups, find their lowest word position
+      let pos = -1;
+      for (const w of grp) {
+        const idx = words.indexOf(w);
+        if (idx >= 0 && (pos === -1 || idx < pos)) pos = idx;
+      }
+      groupWordRow.set(key, pos === -1 ? Infinity : Math.floor(pos / cols));
     }
-    groupWordRow.set(key, pos === -1 ? Infinity : Math.floor(pos / cols));
   }
 
   // sort groups by their computed word-row (finite rows first)
@@ -291,69 +343,127 @@ function reorderHintsAccordingToWords(overrides = {}) {
   }
 }
 
-function populateHints() {
+async function populateHints() {
   const hintsList = document.getElementById("hints-list");
   const hintsCol = document.querySelector(".hints-column");
   if (!hintsList || !hintsCol) return;
-  hintsList.innerHTML = "";
-  // Use stored category labels if available from generated puzzle, otherwise try to guess
+
+  console.log(
+    "Populating hints. Current puzzle:",
+    JSON.stringify(puzzle, null, 2)
+  );
+
+  // First try to use stored category labels from the puzzle
   let catNames = puzzle.groupLabels || [];
+  console.log("Initial catNames:", catNames);
+
+  // If no labels stored, try to use previously guessed categories or guess new ones
   if (!catNames.length) {
     try {
-      catNames = guessCategoriesForGroups(groups) || [];
+      // First check if we have previously guessed categories for this puzzle
+      if (
+        playerStats.lastPuzzleId === currentPuzzleId &&
+        playerStats.lastPuzzleLabels
+      ) {
+        catNames = playerStats.lastPuzzleLabels;
+      } else {
+        // Make sure wordlist is loaded
+        await loadMasterWordlist();
+        // Try to guess categories
+        const guessed = guessCategoriesForGroups(groups) || [];
+        if (guessed.some((x) => x)) {
+          catNames = guessed;
+          // Store the guessed categories
+          playerStats.lastPuzzleLabels = guessed;
+          playerStats.lastPuzzleId = currentPuzzleId;
+          savePlayerStats();
+        }
+      }
     } catch (e) {
+      console.warn("Failed to guess categories:", e);
       catNames = [];
     }
   }
+
   // defensive dedupe: ensure we don't display the same visible label twice
   const seenDisplay = new Set();
-  groups.forEach((g, i) => {
-    const div = document.createElement("div");
-    div.className = "hint-group";
-    div.dataset.groupIndex = String(i);
-    div.setAttribute("role", "button");
-    div.setAttribute("tabindex", "0");
 
-    // Add hint interaction handlers
-    div.addEventListener("click", () => toggleHintHighlight(i));
-    div.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        toggleHintHighlight(i);
-      }
-    });
+  // Update static hint elements instead of creating new ones
+  for (let i = 0; i < 4; i++) {
+    const hintElement = document.getElementById(`hint-${i}`);
+    const hintTextDiv = hintElement?.querySelector(".hint-text");
+    const hintWordsDiv = hintElement?.querySelector(".hint-words");
 
-    const cat = catNames[i];
-    if (cat) {
-      // nicer label: replace dashes and capitalize
-      const rawLabel = String(cat).replace(/-/g, " ").trim();
-      const displayKey = rawLabel.toLowerCase();
-      const label = rawLabel.replace(/\b\w/g, (m) => m.toUpperCase());
-      if (seenDisplay.has(displayKey)) {
-        // duplicate visible label detected; fall back to word hint
-        div.textContent = `${g[0]} · ${g.length - 1} more`;
-      } else {
-        div.textContent = label;
-        seenDisplay.add(displayKey);
-      }
-    } else {
-      div.textContent = `${g[0]} · ${g.length - 1} more`;
+    if (!hintElement || !hintTextDiv || !hintWordsDiv) {
+      console.error(`Could not find hint-${i} element or its children`);
+      continue;
     }
-    hintsList.appendChild(div);
-  });
+
+    if (i < groups.length) {
+      const g = groups[i];
+
+      // Update dataset
+      hintElement.dataset.groupIndex = String(i);
+
+      const cat = catNames[i];
+      if (cat) {
+        // nicer label: replace dashes and capitalize
+        const rawLabel = String(cat).replace(/-/g, " ").trim();
+        const displayKey = rawLabel.toLowerCase();
+        const label = rawLabel.replace(/\b\w/g, (m) => m.toUpperCase());
+        if (seenDisplay.has(displayKey)) {
+          // duplicate visible label detected; fall back to word hint
+          hintTextDiv.textContent = `${g[0]} · ${g.length - 1} more`;
+        } else {
+          hintTextDiv.textContent = label;
+          seenDisplay.add(displayKey);
+        }
+      } else {
+        hintTextDiv.textContent = `${g[0]} · ${g.length - 1} more`;
+      }
+
+      // Show the hint element
+      hintElement.style.display = "";
+    } else {
+      // Hide unused hint elements
+      hintElement.style.display = "none";
+      hintTextDiv.textContent = "";
+      hintWordsDiv.textContent = "";
+    }
+  }
 }
 
 // Load a puzzle by id (either built-in or generated shape). This restores
 // the previous loadPuzzle behavior used by controls and next/shuffle.
-function loadPuzzle(id, { shuffleChoices = true } = {}) {
+async function loadPuzzle(id, { shuffleChoices = true } = {}) {
+  // If there's a partially solved puzzle, count it as abandoned
+  if (solvedSet.size > 0 && solvedSet.size < groups.length) {
+    playerStats.streaks.current = 0; // Break the streak for abandoned puzzle
+    playerStats.gamesPlayed++;
+    savePlayerStats();
+  }
+
+  // Ensure wordlist is loaded for category hints
+  await loadMasterWordlist();
+
   const p = getPuzzle(id, { shuffleChoices });
   currentPuzzleId = p.id;
   puzzle = p;
-  words = p.choices;
+  // Ensure unique words in choices
+  const uniqueChoices = [...new Set(p.choices)];
+  words = uniqueChoices;
   groups = p.groups;
   selected = [];
   solvedSet = new Set();
   clearSpeechQueue();
+
+  // Save the puzzle state
+  playerStats.lastPuzzleId = p.id;
+  playerStats.lastPuzzleGroups = p.groups;
+  if (p.groupLabels) {
+    playerStats.lastPuzzleLabels = p.groupLabels;
+  }
+  savePlayerStats();
   const titleEl = document.querySelector("h1");
   if (titleEl) titleEl.textContent = "Kids Connections";
   renderGrid();
@@ -369,10 +479,8 @@ async function nextPuzzle() {
   // Always try to generate a puzzle client-side first. If generation fails
   // (insufficient categories or other error), fall back to the built-in puzzles.
   try {
-    // ensure master wordlist is loaded before generating
-    try {
-      await loadMasterWordlist();
-    } catch (e) {}
+    // ensure master wordlist is loaded before generating or displaying
+    await loadMasterWordlist();
     const p = generatePuzzle({ seed: Date.now() });
     if (p) {
       // use the generated puzzle object shape directly
@@ -420,10 +528,19 @@ let speaking = false;
 const speechQueue = [];
 
 function processSpeechQueue() {
+  console.log(
+    "processSpeechQueue called, speaking:",
+    speaking,
+    "queue length:",
+    speechQueue.length,
+    "speechMuted:",
+    speechMuted
+  );
   if (speaking || speechQueue.length === 0 || speechMuted) return;
 
   speaking = true;
   const { text, options = {} } = speechQueue[0];
+  console.log("About to speak:", text);
 
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.rate = options.rate || 1.0;
@@ -452,12 +569,14 @@ function processSpeechQueue() {
 }
 
 function queueSpeech(text, options = {}) {
+  console.log("queueSpeech called:", text, "speechMuted:", speechMuted);
   if (speechMuted) return;
   speechQueue.push({ text, options });
   processSpeechQueue();
 }
 
 function speakWord(word, options = {}) {
+  console.log("speakWord called with:", word);
   queueSpeech(word, options);
 }
 
@@ -488,15 +607,23 @@ function toggleWord(el, word) {
   if (selected.includes(word)) {
     // Always allow deselecting
     el.classList.remove("selected");
+    // Remove animation classes
+    el.classList.remove("wrong");
+    // Reset aria attributes
+    el.setAttribute("aria-selected", "false");
     selected = selected.filter((w) => w !== word);
   } else if (selected.length >= 4) {
     // Prevent selecting more than 4 words
     result.textContent = "You can only select 4 words!";
     speakWord("Only 4 words allowed", { pitch: 1.0 });
+    // Add wrong animation
+    el.classList.add("wrong");
+    setTimeout(() => el.classList.remove("wrong"), 400);
     return;
   } else {
     // Select the word
     el.classList.add("selected");
+    el.setAttribute("aria-selected", "true");
     selected.push(word);
     // Speak the word when it's selected
     speakWord(word);
@@ -541,6 +668,15 @@ function checkAnswer() {
       result.textContent = "🎉🎉 All groups found!";
       speakCelebration("A winner! You found all the groups!", 500); // Delay to let "Good job" finish
       stopGameTimer(); // Stop the timer when puzzle is complete
+      // Update player stats on puzzle completion
+      playerStats.puzzlesSolved++;
+      playerStats.streaks.current++;
+      playerStats.streaks.best = Math.max(
+        playerStats.streaks.best,
+        playerStats.streaks.current
+      );
+      playerStats.gamesPlayed++;
+      savePlayerStats();
     }
   } else {
     // incorrect
@@ -568,20 +704,14 @@ function findMatchingGroupIndex(selectedWords) {
 function markSolvedGroup(si) {
   // Animate: capture old positions, reorder words, render, then FLIP animate
   const oldRects = captureRects();
-  // determine current columns count to compute the selected words' row
-  const gridEl = document.getElementById("word-grid");
-  let cols = 4;
-  if (gridEl) {
-    const style = window.getComputedStyle(gridEl);
-    const template = style.getPropertyValue("grid-template-columns") || "";
-    const parts = template.trim().split(/\s+/).filter(Boolean);
-    if (parts.length > 0) cols = parts.length;
-  }
-  // determine the row where the selected words currently appear in the grid
-  // compute first occurrence of any word from this group in the current words array
+
+  // Fixed column count since we use a 4x4 grid
+  const cols = 4;
+
+  // Find first occurrence of any selected word to determine its row
   let pos = -1;
   const grp = groups[si] || [];
-  for (const w of grp) {
+  for (const w of selected) {
     const idx = words.indexOf(w);
     if (idx >= 0 && (pos === -1 || idx < pos)) pos = idx;
   }
@@ -600,9 +730,10 @@ function markSolvedGroup(si) {
 
 function clearSelection() {
   selected = [];
-  document
-    .querySelectorAll(".word.selected")
-    .forEach((el) => el.classList.remove("selected"));
+  document.querySelectorAll(".Gridcell.word.selected").forEach((el) => {
+    el.classList.remove("selected");
+    el.setAttribute("aria-selected", "false");
+  });
   // Also clear any hint highlights
   clearHintHighlights();
   updateResult();
@@ -619,6 +750,9 @@ const playerStats = {
     current: 0,
     best: 0,
   },
+  lastPuzzleId: null, // Track the last puzzle shown
+  lastPuzzleGroups: null, // Store the last puzzle's group data
+  lastPuzzleLabels: null, // Store the last puzzle's category labels
 };
 
 // Load player stats from localStorage
@@ -767,7 +901,7 @@ function toggleHintHighlight(groupIndex) {
   });
 
   // Speak the category name if available (uses our existing speech functionality)
-  if (!muted) {
+  if (!speechMuted) {
     speakWord(hintGroup.textContent);
   }
 }
@@ -814,52 +948,163 @@ function revealAnswer() {
 document.getElementById("check-btn").addEventListener("click", checkAnswer);
 document.getElementById("reset-btn").addEventListener("click", resetGame);
 document.getElementById("reveal-btn").addEventListener("click", revealAnswer);
-document.getElementById("next-btn").addEventListener("click", nextPuzzle);
-document.getElementById("shuffle-btn").addEventListener("click", shufflePuzzle);
+document
+  .getElementById("next-btn")
+  .addEventListener("click", () => nextPuzzle().catch(console.error));
+document.getElementById("shuffle-btn").addEventListener("click", () => {
+  const randId = getRandomPuzzleId(currentPuzzleId);
+  loadPuzzle(randId, { shuffleChoices: true }).catch(console.error);
+});
 
-renderGrid();
+// Set up static event handlers for grid cells and hints
+function setupStaticEventHandlers() {
+  // Set up event handlers for static grid cells
+  for (let idx = 0; idx < 16; idx++) {
+    const cell = document.getElementById(`word-${idx}`);
+    if (!cell) continue;
 
-// populate hints on initial load so the hints column is in sync
-populateHints();
+    // Add click event handler
+    cell.addEventListener("click", () => {
+      console.log("Grid cell clicked:", cell.id);
+      const word = cell.dataset.word;
+      console.log("Word from dataset:", word);
+      if (!word || isWordSolved(word)) return;
 
-// Start the timer for the initial puzzle
-startGameTimer();
+      const isSelected = cell.classList.contains("selected");
+      if (isSelected) {
+        cell.classList.remove("selected");
+        cell.setAttribute("aria-selected", "false");
+        selected = selected.filter((w) => w !== word);
+      } else {
+        cell.classList.add("selected");
+        cell.setAttribute("aria-selected", "true");
+        selected.push(word);
+        // Speak the word when it's selected
+        console.log("About to call speakWord with:", word);
+        speakWord(word);
+        // Play selection sound
+        try {
+          playSelectSound();
+        } catch (e) {}
+      }
+      updateResult();
+    });
 
-// Try to preload the master wordlist for the client-side generator
-(async () => {
-  try {
-    await loadMasterWordlist();
-    console.log("master_wordlist loaded for client generator");
-    // repopulate hints now that category names are available
-    try {
-      populateHints();
-      reorderHintsAccordingToWords();
-    } catch (e) {}
-  } catch (e) {
-    console.warn("failed to load master wordlist for generator", e);
+    // Add keyboard event handler
+    cell.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        cell.click();
+      }
+    });
   }
-})();
 
-function populatePuzzleSelect() {
-  if (!puzzleSelect) return;
-  const list = getAllPuzzles();
-  puzzleSelect.innerHTML = "";
-  list.forEach((p) => {
-    const opt = document.createElement("option");
-    opt.value = p.id;
-    opt.textContent = p.title;
-    if (p.id === currentPuzzleId) opt.selected = true;
-    puzzleSelect.appendChild(opt);
-  });
+  // Set up event handlers for static hint elements
+  for (let i = 0; i < 4; i++) {
+    const hintElement = document.getElementById(`hint-${i}`);
+    if (!hintElement) continue;
+
+    // Add click event handler
+    hintElement.addEventListener("click", () => {
+      const groupIndex = parseInt(hintElement.dataset.groupIndex);
+      if (!isNaN(groupIndex)) {
+        toggleHintHighlight(groupIndex);
+      }
+    });
+
+    // Add keyboard event handler
+    hintElement.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        const groupIndex = parseInt(hintElement.dataset.groupIndex);
+        if (!isNaN(groupIndex)) {
+          toggleHintHighlight(groupIndex);
+        }
+      }
+    });
+  }
 }
 
-if (puzzleSelect) {
-  populatePuzzleSelect();
-  puzzleSelect.addEventListener("change", (e) => {
-    const id = Number(e.target.value);
-    loadPuzzle(id, { shuffleChoices: false });
-  });
+// Initialize the game
+async function startGame() {
+  console.log("Starting game initialization...");
+
+  // Load saved player stats
+  loadPlayerStats();
+  console.log("Player stats loaded");
+
+  try {
+    // First initialize puzzles
+    console.log("Initializing puzzles...");
+    await initializePuzzles();
+    console.log("Puzzles initialized");
+
+    // Get saved or default puzzle ID
+    currentPuzzleId = playerStats.lastPuzzleId || 1;
+    console.log("Loading master wordlist...");
+    await loadMasterWordlist();
+    console.log("Master wordlist loaded for client generator");
+
+    // If we have a saved puzzle state, restore it
+    if (playerStats.lastPuzzleId !== null) {
+      currentPuzzleId = playerStats.lastPuzzleId;
+      // Get the puzzle but preserve the saved labels
+      puzzle = getPuzzle(currentPuzzleId, { shuffleChoices: false });
+      if (playerStats.lastPuzzleLabels) {
+        puzzle.groupLabels = playerStats.lastPuzzleLabels;
+      }
+      if (playerStats.lastPuzzleGroups) {
+        puzzle.groups = playerStats.lastPuzzleGroups;
+      }
+    } else {
+      // Load initial puzzle if no saved state
+      puzzle = getPuzzle(currentPuzzleId, { shuffleChoices: false });
+    }
+
+    console.log("Loading initial puzzle state:", { currentPuzzleId, puzzle });
+    words = puzzle.choices;
+    groups = puzzle.groups;
+    console.log("Puzzle data prepared:", { words, groups });
+
+    // Render everything in the correct order
+    console.log("Starting render sequence...");
+    renderGrid();
+    console.log("Grid rendered");
+    populateHints();
+    console.log("Hints populated");
+    reorderHintsAccordingToWords();
+    console.log("Hints reordered");
+    updateResult();
+
+    // Start the timer only after everything is loaded
+    startGameTimer();
+  } catch (e) {
+    console.warn("Failed to initialize game:", e);
+  }
 }
+
+// Start the game initialization when modules are loaded
+window.addEventListener("DOMContentLoaded", async () => {
+  console.log("DOM Content Loaded, starting initialization...");
+  try {
+    // Set up static event handlers first
+    setupStaticEventHandlers();
+
+    // Wait for module imports to be ready
+    await Promise.resolve();
+    await startGame();
+  } catch (err) {
+    console.error("Game initialization failed:", err);
+    // Try to provide more detail about the error
+    if (err instanceof ReferenceError) {
+      console.log("Module state:", {
+        initializePuzzles: typeof initializePuzzles,
+        getPuzzle: typeof getPuzzle,
+        loadMasterWordlist: typeof loadMasterWordlist,
+      });
+    }
+  }
+});
 
 // generator toggle (optional). If there's no element, nothing happens and existing behavior remains.
 // generator now runs automatically; no manual toggle to initialize
@@ -915,27 +1160,10 @@ if (difficultySelect) {
   });
 }
 
-// Text fitting function
+// Text fitting function - DISABLED for CSS-only sizing
 function fitText(element) {
-  const container = element.parentElement;
-  const maxWidth = container.clientWidth - 16; // Account for padding
-  const maxHeight = container.clientHeight - 16;
-
-  // Start with the current font size
-  let fontSize = parseFloat(getComputedStyle(element).fontSize);
-  const minFontSize = 10; // Don't go smaller than this
-
-  // Reset any previous scaling
-  element.style.fontSize = "";
-
-  // Check if text is overflowing
-  while (
-    (element.scrollWidth > maxWidth || element.scrollHeight > maxHeight) &&
-    fontSize > minFontSize
-  ) {
-    fontSize = Math.max(fontSize - 1, minFontSize);
-    element.style.fontSize = fontSize + "px";
-  }
+  // Function disabled - using CSS clamp() for responsive sizing instead
+  return;
 }
 
 // Debounced resize handler for updating text fitting
@@ -943,7 +1171,8 @@ let resizeTimeout;
 window.addEventListener("resize", () => {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(() => {
-    document.querySelectorAll(".text-fit").forEach(fitText);
+    // Temporarily disable fitText - use CSS sizing instead
+    // document.querySelectorAll(".word").forEach(fitText);
   }, 100);
 });
 

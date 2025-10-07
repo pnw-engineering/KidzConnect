@@ -12,8 +12,8 @@
     />
     <meta name="theme-color" content="#69c0ff" />
 
-    <!-- iOS PWA meta tags -->
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- PWA meta tags -->
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta
       name="apple-mobile-web-app-status-bar-style"
       content="black-translucent"
@@ -125,25 +125,60 @@
 
       <div class="puzzle-area">
         <div class="puzzle-column">
-          <div class="puzzle-select-wrap" style="display: none">
-            <label for="puzzle-select">Choose a puzzle:</label>
-            <select id="puzzle-select" aria-label="Choose puzzle"></select>
+          <div class="grid-area" role="grid" aria-label="Word grid">
+            <div class="Gridrow">
+              <div id="word-0" class="Gridcell word" role="gridcell" tabindex="0">0</div>
+              <div id="word-1" class="Gridcell word" role="gridcell" tabindex="0">1</div>
+              <div id="word-2" class="Gridcell word" role="gridcell" tabindex="0">2</div>
+              <div id="word-3" class="Gridcell word" role="gridcell" tabindex="0">3</div>
+            </div>
+            <div class="Gridrow">
+              <div id="word-4" class="Gridcell word" role="gridcell" tabindex="0">4</div>
+              <div id="word-5" class="Gridcell word" role="gridcell" tabindex="0">5</div>
+              <div id="word-6" class="Gridcell word" role="gridcell" tabindex="0">6</div>
+              <div id="word-7" class="Gridcell word" role="gridcell" tabindex="0">7</div>
+            </div>
+            <div class="Gridrow">
+              <div id="word-8" class="Gridcell word" role="gridcell" tabindex="0">8</div>
+              <div id="word-9" class="Gridcell word" role="gridcell" tabindex="0">9</div>
+              <div id="word-10" class="Gridcell word" role="gridcell" tabindex="0">10</div>
+              <div id="word-11" class="Gridcell word" role="gridcell" tabindex="0">11</div>
+            </div>
+            <div class="Gridrow">
+              <div id="word-12" class="Gridcell word" role="gridcell" tabindex="0">12</div>
+              <div id="word-13" class="Gridcell word" role="gridcell" tabindex="0">13</div>
+              <div id="word-14" class="Gridcell word" role="gridcell" tabindex="0">14</div>
+              <div id="word-15" class="Gridcell word" role="gridcell" tabindex="0">15</div>
+            </div>
           </div>
-
-          <div id="word-grid" role="list" aria-label="Word choices"></div>
         </div>
 
-        <aside class="hints-column" aria-label="Hints column">
+        <div class="hints-column" aria-label="Hints column">
           <div class="hints-header">
             <h2>Hints</h2>
             <label class="hints-visibility">
               <input type="checkbox" id="show-hints" /> Show
-            </label>
+            </lLetabel>
           </div>
           <div id="hints-list" class="hints-list">
-            <!-- groups/categories will be populated here -->
+            <div id="hint-0" class="hint-group" role="button" tabindex="0" data-group-index="0" style="display: none;">
+              <div class="hint-text"></div>
+              <div class="hint-words"></div>
+            </div>
+            <div id="hint-1" class="hint-group" role="button" tabindex="0" data-group-index="1" style="display: none;">
+              <div class="hint-text"></div>
+              <div class="hint-words"></div>
+            </div>
+            <div id="hint-2" class="hint-group" role="button" tabindex="0" data-group-index="2" style="display: none;">
+              <div class="hint-text"></div>
+              <div class="hint-words"></div>
+            </div>
+            <div id="hint-3" class="hint-group" role="button" tabindex="0" data-group-index="3" style="display: none;">
+              <div class="hint-text"></div>
+              <div class="hint-words"></div>
+            </div>
           </div>
-        </aside>
+        </div>
       </div>
 
       <div class="controls">
@@ -174,6 +209,6 @@
       <div id="result" role="status" aria-live="polite"></div>
     </main>
 
-    <script type="module" src="script.js"></script>
+    <script type="module" src="./script.js"></script>
   </body>
 </html>
