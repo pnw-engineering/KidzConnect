@@ -1,4 +1,4 @@
-import {
+﻿import {
   getNextPuzzleId,
   getPuzzle,
   getRandomPuzzleId,
@@ -42,7 +42,7 @@ function setSoundMuted(v) {
   const soundBtn = document.getElementById("sound-btn");
   if (soundBtn) {
     soundBtn.setAttribute("aria-pressed", soundMuted ? "true" : "false");
-    soundBtn.textContent = soundMuted ? "🔕" : "🔔";
+    soundBtn.textContent = soundMuted ? "ðŸ”•" : "ðŸ””";
   }
 }
 
@@ -53,7 +53,7 @@ function setSpeechMuted(v) {
   const speechBtn = document.getElementById("speech-btn");
   if (speechBtn) {
     speechBtn.setAttribute("aria-pressed", speechMuted ? "true" : "false");
-    speechBtn.textContent = speechMuted ? "🤫" : "�️";
+    speechBtn.textContent = speechMuted ? "ðŸ¤«" : "ðŸŽ¤";
   }
 }
 function playTone(freq = 440, dur = 0.12, type = "sine", gain = 0.12) {
@@ -413,13 +413,13 @@ async function populateHints() {
         const label = rawLabel.replace(/\b\w/g, (m) => m.toUpperCase());
         if (seenDisplay.has(displayKey)) {
           // duplicate visible label detected; fall back to word hint
-          hintTextDiv.textContent = `${g[0]} · ${g.length - 1} more`;
+          hintTextDiv.textContent = `${g[0]} Â· ${g.length - 1} more`;
         } else {
           hintTextDiv.textContent = label;
           seenDisplay.add(displayKey);
         }
       } else {
-        hintTextDiv.textContent = `${g[0]} · ${g.length - 1} more`;
+        hintTextDiv.textContent = `${g[0]} Â· ${g.length - 1} more`;
       }
 
       // Show the hint element
@@ -641,7 +641,7 @@ function toggleWord(el, word) {
 
 function updateResult() {
   const solvedCount = solvedSet.size;
-  result.textContent = `${selected.length} selected — ${solvedCount}/${groups.length} groups found`;
+  result.textContent = `${selected.length} selected â€” ${solvedCount}/${groups.length} groups found`;
 }
 
 function checkAnswer() {
@@ -659,13 +659,13 @@ function checkAnswer() {
     markSolvedGroup(si);
     selected = [];
     updateResult();
-    result.textContent = `🎉 Correct! ${solvedSet.size}/${groups.length} groups found`;
+    result.textContent = `ðŸŽ‰ Correct! ${solvedSet.size}/${groups.length} groups found`;
     try {
       playCorrect();
       speakCelebration("Good job!");
     } catch (e) {}
     if (solvedSet.size === groups.length) {
-      result.textContent = "🎉🎉 All groups found!";
+      result.textContent = "ðŸŽ‰ðŸŽ‰ All groups found!";
       speakCelebration("A winner! You found all the groups!", 500); // Delay to let "Good job" finish
       stopGameTimer(); // Stop the timer when puzzle is complete
       // Update player stats on puzzle completion
@@ -680,7 +680,7 @@ function checkAnswer() {
     }
   } else {
     // incorrect
-    result.textContent = "❌ Try again!";
+    result.textContent = "âŒ Try again!";
     try {
       playIncorrect();
       speakWord("Try again", { pitch: 0.9 }); // Lower pitch for encouraging tone
@@ -1109,7 +1109,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 // generator toggle (optional). If there's no element, nothing happens and existing behavior remains.
 // generator now runs automatically; no manual toggle to initialize
 
-// hints visibility toggle — keep header visible, hide only the list
+// hints visibility toggle â€” keep header visible, hide only the list
 const showHints = document.getElementById("show-hints");
 if (showHints) {
   const hintsCol = document.querySelector(".hints-column");
@@ -1192,10 +1192,10 @@ function setTheme(theme) {
   // Apply the appropriate theme
   if (theme === "dark" || (theme === "auto" && prefersDark.matches)) {
     document.documentElement.classList.add("dark-theme");
-    themeBtn.textContent = "☀️";
+    themeBtn.textContent = "â˜€ï¸";
   } else {
     document.documentElement.classList.add("light-theme");
-    themeBtn.textContent = "🌙";
+    themeBtn.textContent = "ðŸŒ™";
   }
 
   // Show auto indicator
@@ -1241,3 +1241,6 @@ window._game = {
   nextPuzzle,
   shufflePuzzle,
 };
+
+
+
