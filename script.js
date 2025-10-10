@@ -53,7 +53,7 @@ function setSpeechMuted(v) {
   const speechBtn = document.getElementById("speech-btn");
   if (speechBtn) {
     speechBtn.setAttribute("aria-pressed", speechMuted ? "true" : "false");
-    speechBtn.textContent = speechMuted ? "ðŸ¤«" : "ðŸŽ¤";
+    speechBtn.textContent = speechMuted ? "🤫" : "🎤";
   }
 }
 function playTone(freq = 440, dur = 0.12, type = "sine", gain = 0.12) {
