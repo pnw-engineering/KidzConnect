@@ -1,10 +1,11 @@
-const CACHE_NAME = "kidzconnect-v7";
+const CACHE_NAME = "kidzconnect-v28";
 const ASSETS = [
   "./",
   "./index.html",
   "./style.css",
   "./script.js",
   "./game.mjs",
+  "./game-core.mjs",
   "./generator.mjs",
   "./master_wordlist.json",
   "./puzzles.generated.json",

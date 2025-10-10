@@ -30,7 +30,7 @@ function getAudioCtx() {
 
 // Sound effects state
 let soundMuted = localStorage.getItem("kc-sound-muted") === "1";
-let speechMuted = false; // Force speech enabled for testing
+let speechMuted = localStorage.getItem("kc-speech-muted") === "1";
 
 // debug toggle for hint/category alignment
 const DEBUG_HINTS = false;
@@ -42,7 +42,7 @@ function setSoundMuted(v) {
   const soundBtn = document.getElementById("sound-btn");
   if (soundBtn) {
     soundBtn.setAttribute("aria-pressed", soundMuted ? "true" : "false");
-    soundBtn.textContent = soundMuted ? "ðŸ”•" : "ðŸ””";
+    soundBtn.textContent = soundMuted ? "🔕" : "🔔";
   }
 }
 
@@ -348,14 +348,8 @@ async function populateHints() {
   const hintsCol = document.querySelector(".hints-column");
   if (!hintsList || !hintsCol) return;
 
-  console.log(
-    "Populating hints. Current puzzle:",
-    JSON.stringify(puzzle, null, 2)
-  );
-
   // First try to use stored category labels from the puzzle
   let catNames = puzzle.groupLabels || [];
-  console.log("Initial catNames:", catNames);
 
   // If no labels stored, try to use previously guessed categories or guess new ones
   if (!catNames.length) {
@@ -528,19 +522,10 @@ let speaking = false;
 const speechQueue = [];
 
 function processSpeechQueue() {
-  console.log(
-    "processSpeechQueue called, speaking:",
-    speaking,
-    "queue length:",
-    speechQueue.length,
-    "speechMuted:",
-    speechMuted
-  );
   if (speaking || speechQueue.length === 0 || speechMuted) return;
 
   speaking = true;
   const { text, options = {} } = speechQueue[0];
-  console.log("About to speak:", text);
 
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.rate = options.rate || 1.0;
@@ -569,14 +554,12 @@ function processSpeechQueue() {
 }
 
 function queueSpeech(text, options = {}) {
-  console.log("queueSpeech called:", text, "speechMuted:", speechMuted);
   if (speechMuted) return;
   speechQueue.push({ text, options });
   processSpeechQueue();
 }
 
 function speakWord(word, options = {}) {
-  console.log("speakWord called with:", word);
   queueSpeech(word, options);
 }
 
@@ -641,7 +624,7 @@ function toggleWord(el, word) {
 
 function updateResult() {
   const solvedCount = solvedSet.size;
-  result.textContent = `${selected.length} selected â€” ${solvedCount}/${groups.length} groups found`;
+  result.textContent = `${selected.length} selected — ${solvedCount}/${groups.length} groups found`;
 }
 
 function checkAnswer() {
@@ -659,13 +642,13 @@ function checkAnswer() {
     markSolvedGroup(si);
     selected = [];
     updateResult();
-    result.textContent = `ðŸŽ‰ Correct! ${solvedSet.size}/${groups.length} groups found`;
+    result.textContent = `Correct! ${solvedSet.size}/${groups.length} groups found`;
     try {
       playCorrect();
       speakCelebration("Good job!");
     } catch (e) {}
     if (solvedSet.size === groups.length) {
-      result.textContent = "ðŸŽ‰ðŸŽ‰ All groups found!";
+      result.textContent = "All groups found!";
       speakCelebration("A winner! You found all the groups!", 500); // Delay to let "Good job" finish
       stopGameTimer(); // Stop the timer when puzzle is complete
       // Update player stats on puzzle completion
@@ -680,7 +663,7 @@ function checkAnswer() {
     }
   } else {
     // incorrect
-    result.textContent = "âŒ Try again!";
+    result.textContent = "Try again!";
     try {
       playIncorrect();
       speakWord("Try again", { pitch: 0.9 }); // Lower pitch for encouraging tone
@@ -965,9 +948,7 @@ function setupStaticEventHandlers() {
 
     // Add click event handler
     cell.addEventListener("click", () => {
-      console.log("Grid cell clicked:", cell.id);
       const word = cell.dataset.word;
-      console.log("Word from dataset:", word);
       if (!word || isWordSolved(word)) return;
 
       const isSelected = cell.classList.contains("selected");
@@ -980,7 +961,6 @@ function setupStaticEventHandlers() {
         cell.setAttribute("aria-selected", "true");
         selected.push(word);
         // Speak the word when it's selected
-        console.log("About to call speakWord with:", word);
         speakWord(word);
         // Play selection sound
         try {
@@ -1025,25 +1005,71 @@ function setupStaticEventHandlers() {
   }
 }
 
+// Initialize sound and speech controls
+function setupEventHandlers() {
+  const soundBtn = document.getElementById("sound-btn");
+  const speechBtn = document.getElementById("speech-btn");
+
+  if (soundBtn) {
+    setSoundMuted(soundMuted);
+    soundBtn.addEventListener("click", () => {
+      console.log("Sound button clicked! Current state:", soundMuted);
+      setSoundMuted(!soundMuted);
+    });
+    // Force update button display
+    soundBtn.textContent = soundMuted ? "🔕" : "🔔";
+  }
+
+  if (speechBtn) {
+    setSpeechMuted(speechMuted);
+    speechBtn.addEventListener("click", () => {
+      console.log("Speech button clicked! Current state:", speechMuted);
+      setSpeechMuted(!speechMuted);
+    });
+    // Force update button display
+    speechBtn.textContent = speechMuted ? "🤫" : "🎤";
+  }
+
+  // Initialize theme controls
+  const themeBtn = document.getElementById("theme-btn");
+  if (themeBtn) {
+    setTheme(currentTheme);
+    // Force update button display after setTheme
+    const isDark =
+      currentTheme === "dark" ||
+      (currentTheme === "auto" &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches);
+    themeBtn.textContent = isDark ? "☀️" : "🌙";
+
+    themeBtn.addEventListener("click", () => {
+      // Cycle through themes: auto -> light -> dark -> auto
+      const nextTheme = {
+        auto: "light",
+        light: "dark",
+        dark: "auto",
+      }[currentTheme];
+      currentTheme = nextTheme;
+      localStorage.setItem("kc-theme", nextTheme);
+      setTheme(nextTheme);
+    });
+  }
+}
+
 // Initialize the game
 async function startGame() {
-  console.log("Starting game initialization...");
-
   // Load saved player stats
   loadPlayerStats();
-  console.log("Player stats loaded");
+
+  // Setup event handlers for buttons and controls
+  setupEventHandlers();
 
   try {
     // First initialize puzzles
-    console.log("Initializing puzzles...");
     await initializePuzzles();
-    console.log("Puzzles initialized");
 
     // Get saved or default puzzle ID
     currentPuzzleId = playerStats.lastPuzzleId || 1;
-    console.log("Loading master wordlist...");
     await loadMasterWordlist();
-    console.log("Master wordlist loaded for client generator");
 
     // If we have a saved puzzle state, restore it
     if (playerStats.lastPuzzleId !== null) {
@@ -1061,19 +1087,14 @@ async function startGame() {
       puzzle = getPuzzle(currentPuzzleId, { shuffleChoices: false });
     }
 
-    console.log("Loading initial puzzle state:", { currentPuzzleId, puzzle });
     words = puzzle.choices;
     groups = puzzle.groups;
-    console.log("Puzzle data prepared:", { words, groups });
 
     // Render everything in the correct order
-    console.log("Starting render sequence...");
     renderGrid();
-    console.log("Grid rendered");
     populateHints();
-    console.log("Hints populated");
     reorderHintsAccordingToWords();
-    console.log("Hints reordered");
+    updateResult();
     updateResult();
 
     // Start the timer only after everything is loaded
@@ -1085,7 +1106,6 @@ async function startGame() {
 
 // Start the game initialization when modules are loaded
 window.addEventListener("DOMContentLoaded", async () => {
-  console.log("DOM Content Loaded, starting initialization...");
   try {
     // Set up static event handlers first
     setupStaticEventHandlers();
@@ -1097,7 +1117,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     console.error("Game initialization failed:", err);
     // Try to provide more detail about the error
     if (err instanceof ReferenceError) {
-      console.log("Module state:", {
+      console.error("Module loading error - missing functions:", {
         initializePuzzles: typeof initializePuzzles,
         getPuzzle: typeof getPuzzle,
         loadMasterWordlist: typeof loadMasterWordlist,
@@ -1126,20 +1146,6 @@ if (showHints) {
   );
   // set initial state based on checkbox
   setHintsVisible(showHints.checked);
-}
-
-// Initialize sound and speech controls
-const soundBtn = document.getElementById("sound-btn");
-const speechBtn = document.getElementById("speech-btn");
-
-if (soundBtn) {
-  setSoundMuted(soundMuted);
-  soundBtn.addEventListener("click", () => setSoundMuted(!soundMuted));
-}
-
-if (speechBtn) {
-  setSpeechMuted(speechMuted);
-  speechBtn.addEventListener("click", () => setSpeechMuted(!speechMuted));
 }
 
 // Initialize difficulty control
@@ -1192,10 +1198,10 @@ function setTheme(theme) {
   // Apply the appropriate theme
   if (theme === "dark" || (theme === "auto" && prefersDark.matches)) {
     document.documentElement.classList.add("dark-theme");
-    themeBtn.textContent = "â˜€ï¸";
+    themeBtn.textContent = "☀️";
   } else {
     document.documentElement.classList.add("light-theme");
-    themeBtn.textContent = "ðŸŒ™";
+    themeBtn.textContent = "🌙";
   }
 
   // Show auto indicator
@@ -1204,22 +1210,6 @@ function setTheme(theme) {
   }
 
   themeBtn.setAttribute("aria-pressed", theme === "dark");
-}
-
-// Initialize theme
-setTheme(currentTheme);
-
-// Theme toggle button click handler
-if (themeBtn) {
-  themeBtn.addEventListener("click", () => {
-    // Cycle through themes: auto -> light -> dark -> auto
-    const nextTheme = {
-      auto: "light",
-      light: "dark",
-      dark: "auto",
-    }[currentTheme];
-    setTheme(nextTheme);
-  });
 }
 
 // Watch for system theme changes
@@ -1241,6 +1231,3 @@ window._game = {
   nextPuzzle,
   shufflePuzzle,
 };
-
-
-
