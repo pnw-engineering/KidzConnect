@@ -142,21 +142,96 @@ def pick_group_from_category(cat_words: List[str], count: int = 4):
     return random.sample(cat_words, count)
 
 
-def build_puzzle(puzzle_id: int, categories: List[str], bank: dict) -> dict:
-    # categories should be 4 category keys
+def is_word_in_any_category(word: str, bank: dict, exclude_cats: List[str] = None) -> bool:
+    """Check if a word appears in any category (except excluded ones)."""
+    word = word.lower()
+    for cat, words in bank.items():
+        if exclude_cats and cat in exclude_cats:
+            continue
+        if word in [w.lower() for w in words]:
+            return True
+    return False
+
+def pick_categories(bank: dict, count: int = 4) -> List[str]:
+    """Pick unique categories, with at most one being a part of speech."""
+    pos_categories = {cat for cat in bank if cat.lower() in ['nouns', 'verbs', 'adjectives', 'adverbs']}
+    regular_categories = {cat for cat in bank if cat not in pos_categories}
+    
+    # Decide if we'll use a POS category
+    use_pos = random.random() < 0.25 and pos_categories  # 25% chance if POS categories exist
+    
+    result = []
+    if use_pos:
+        # Add one POS category
+        pos_cat = random.choice(list(pos_categories))
+        result.append(pos_cat)
+        # Add remaining regular categories
+        result.extend(random.sample(list(regular_categories), count - 1))
+    else:
+        # All regular categories
+        result.extend(random.sample(list(regular_categories), count))
+    
+    return result
+
+def build_puzzle(puzzle_id: int, bank: dict) -> dict:
+    categories = pick_categories(bank, 4)
     groups = []
     choices = []
+    used_words = set()  # Track all used words across categories
+    
+    # Build each group ensuring no word overlap with previous categories
     for cat in categories:
-        words = pick_group_from_category(bank[cat], 4)
-        groups.append([w.capitalize() for w in words])
-        choices.extend([w.capitalize() for w in words])
+        available_words = []
+        for word in bank[cat]:
+            word = word.capitalize()
+            # Only use words that aren't in any previous category and haven't been used
+            if word not in used_words and not is_word_in_any_category(word, bank, exclude_cats=[cat]):
+                available_words.append(word)
+        
+        if len(available_words) < 4:
+            # If we don't have enough unique words, try a different category
+            continue
+            
+        group_words = random.sample(available_words, 4)
+        groups.append(group_words)
+        choices.extend(group_words)
+        used_words.update(group_words)
 
-    # Fill remaining choices by sampling from other categories to reach 16 unique
-    all_pool = [w for cat in bank.values() for w in cat]
+    # If we don't have 4 complete groups, raise an exception to trigger retry
+    if len(groups) < 4:
+        raise ValueError("Could not generate 4 complete groups with unique words")
+
+    # Fill remaining choices to reach 16 unique words
+    all_words = [w for cat in bank.values() for w in cat]
     while len(choices) < 16:
-        cand = random.choice(all_pool).capitalize()
-        if cand not in choices:
+        cand = random.choice(all_words).capitalize()
+        if cand not in used_words:
             choices.append(cand)
+            used_words.add(cand)
+
+    # Shuffle final choices
+    random.shuffle(choices)
+
+    # Format category names for hints
+    formatted_labels = []
+    for cat in categories:
+        # Convert from snake_case or kebab-case to Title Case
+        label = cat.replace('_', ' ').replace('-', ' ').strip()
+        label = ' '.join(word.capitalize() for word in label.split())
+        formatted_labels.append(label)
+        
+    print(f"Generated puzzle {puzzle_id}:")
+    print(f"Categories: {categories}")
+    print(f"Formatted labels: {formatted_labels}")
+    print("Groups:", json.dumps(groups, indent=2))
+
+    return {
+        "id": puzzle_id,
+        "title": f"Puzzle {puzzle_id}",
+        "choices": choices,
+        "groups": groups,
+        "groupLabels": formatted_labels  # Store the formatted category names for hints
+    }
 
     # Shuffle choices for the puzzle
     random.shuffle(choices)
@@ -178,12 +253,20 @@ def generate_local_puzzles(count=4, seed: int | None = None):
         bank = master_cats
     else:
         bank = CATEGORY_BANK
-    cat_keys = list(bank.keys())
+
     puzzles = []
-    for i in range(1, count + 1):
-        # Pick 4 distinct categories for each puzzle
-        cats = random.sample(cat_keys, 4)
-        puzzles.append(build_puzzle(i, cats, bank))
+    attempt = 0
+    max_attempts = count * 3  # Allow some retries per puzzle
+
+    while len(puzzles) < count and attempt < max_attempts:
+        try:
+            puzzle = build_puzzle(len(puzzles) + 1, bank)
+            if puzzle["groups"] and len(puzzle["groups"]) == 4:  # Verify we got 4 valid groups
+                puzzles.append(puzzle)
+        except Exception as e:
+            print(f"Failed to generate puzzle: {e}")
+        attempt += 1
+
     return puzzles
 
 

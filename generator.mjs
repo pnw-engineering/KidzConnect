@@ -13,10 +13,7 @@ export async function loadMasterWordlist(url = "master_wordlist.json") {
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
     master = await resp.json();
   } catch (e) {
-    console.warn(
-      "Could not load master_wordlist.json, falling back to empty list",
-      e
-    );
+    // Could not load master_wordlist.json, falling back to empty list
     master = [];
   }
   // build category map with normalization and deduplication

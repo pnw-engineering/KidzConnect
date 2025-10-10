@@ -1,0 +1,77 @@
+/* Main content and headings */
+.difficulty-select select {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  background: var(--card);
+  color: var(--text);
+  font-size: 0.875em;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.timer {
+  font-family: monospace;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.stat {
+  font-size: 0.875em;
+}
+
+.stat i {
+  font-size: 1.1em;
+}
+
+.hints-header h2 {
+  font-size: 1em;
+  margin: 0;
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.instructions {
+  font-size: 0.875em;
+}
+
+/* Grid cells and text */
+.Gridcell.word .text-fit {
+  font-size: 1em;
+}
+
+.controls button {
+  font-size: 0.875em;
+}
+
+#theme-btn::after {
+  font-size: 0.625em; /* 10/16 = 0.625 */
+}
+
+/* Media query adjustments */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.25em;
+  }
+}
+
+@media (max-width: 480px) {
+  .controls button {
+    font-size: 0.875em;
+  }
+
+  .stat {
+    font-size: 0.875em;
+  }
+}
+
+/* Portrait orientation adjustments */
+@media (orientation: portrait) and (max-width: 768px) {
+  :root {
+    font-size: clamp(12px, calc(10px + 1vw), 16px);
+  }
+}

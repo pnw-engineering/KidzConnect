@@ -1,0 +1,151 @@
+/* ... (previous CSS root and theme variables remain unchanged) ... */
+
+.grid-area {
+  display: flex;
+  flex-direction: column;
+  gap: var(--grid-gap);
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: var(--container-padding);
+  perspective: 1000px;
+}
+
+.Gridrow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--grid-gap);
+  transform-style: preserve-3d;
+}
+
+.Gridcell {
+  position: relative;
+  height: var(--tile-h);
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.Gridcell.word {
+  background: linear-gradient(180deg, var(--card), #f8fcff);
+  border: 3px solid transparent;
+  border-radius: 10px;
+  padding: var(--word-padding);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 12px var(--shadow);
+  cursor: pointer;
+  font-weight: 600;
+  text-align: center;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  will-change: transform, background, box-shadow;
+}
+
+/* Container for text that will be auto-scaled */
+.Gridcell.word .text-fit {
+  display: inline-block;
+  padding: 4px;
+  font-size: var(--font-size-base);
+  max-width: 100%;
+  max-height: 100%;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Animate text appearance when loaded */
+.Gridcell.word .text-fit.loaded {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.Gridcell.word:hover {
+  transform: translateZ(10px);
+  box-shadow: 0 8px 16px var(--shadow);
+}
+
+.Gridcell.word:active {
+  transform: translateZ(5px);
+}
+
+.Gridcell.word:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--accent), 0 6px 12px var(--shadow);
+}
+
+.Gridcell.word.selected {
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  color: #102;
+  transform: translateZ(20px) scale(1.05);
+  box-shadow: 0 12px 24px var(--shadow);
+}
+
+.Gridcell.word.solved {
+  background: var(--solved-bg);
+  color: var(--solved-text);
+  opacity: 0.95;
+  transform: translateZ(0) scale(1);
+  box-shadow: none;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Animations for state changes */
+@keyframes selectPop {
+  0% { transform: translateZ(0) scale(1); }
+  50% { transform: translateZ(30px) scale(1.1); }
+  100% { transform: translateZ(20px) scale(1.05); }
+}
+
+@keyframes solvePop {
+  0% { transform: translateZ(20px) scale(1.05); }
+  40% { transform: translateZ(40px) scale(1.15); }
+  100% { transform: translateZ(0) scale(1); }
+}
+
+@keyframes wrongShake {
+  0%, 100% { transform: translateZ(20px) translateX(0); }
+  25% { transform: translateZ(20px) translateX(-8px); }
+  75% { transform: translateZ(20px) translateX(8px); }
+}
+
+.Gridcell.word.selected {
+  animation: selectPop 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+}
+
+.Gridcell.word.solved {
+  animation: solvePop 0.6s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+}
+
+.Gridcell.word.wrong {
+  animation: wrongShake 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .grid-area {
+    --grid-gap: 8px;
+    padding: 10px;
+  }
+
+  .Gridcell.word {
+    padding: 8px 6px;
+  }
+}
+
+@media (min-width: 768px) {
+  .grid-area {
+    --grid-gap: 16px;
+  }
+
+  .Gridcell.word:hover {
+    transform: translateZ(15px);
+  }
+}

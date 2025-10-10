@@ -1,0 +1,83 @@
+@media (max-width: 768px) {
+  .puzzle-area {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .hints-column {
+    grid-column: 1;
+    grid-row: auto;
+    margin-top: var(--spacing-md);
+  }
+
+  .puzzle-column {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .game-controls {
+    gap: var(--spacing-sm);
+  }
+
+  h1 {
+    font-size: var(--font-size-large);
+  }
+
+  .container {
+    max-width: 100%;
+    padding: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --container-padding: var(--spacing-sm);
+    --grid-gap: var(--spacing-xs);
+  }
+
+  .Gridcell.word {
+    padding: var(--spacing-xs);
+  }
+
+  .controls {
+    gap: var(--spacing-xs);
+  }
+
+  .controls button {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-small);
+    min-height: calc(var(--spacing-xl) * 2);
+  }
+
+  .game-controls {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stats-panel {
+    gap: var(--spacing-xs);
+  }
+
+  .stat {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-small);
+  }
+
+  .difficulty-select select {
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+}
+
+/* High-DPI screen optimizations */
+@media (min-resolution: 2dppx) {
+  .Gridcell.word {
+    border-width: 2px;
+  }
+}
+
+/* Portrait orientation adjustments */
+@media (orientation: portrait) and (max-width: 768px) {
+  :root {
+    --root-font-size: clamp(12px, calc(10px + 1vw), 16px);
+  }
+}
